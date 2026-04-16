@@ -16,6 +16,11 @@ import { FassItemDetailPage } from './pages/fass/FassItemDetailPage'
 import { FassMistakeQuizPage } from './pages/fass/FassMistakeQuizPage'
 import { FassSelfCheckPage } from './pages/fass/FassSelfCheckPage'
 import { FassEvidencePage } from './pages/fass/FassEvidencePage'
+import { SwallowHubPage } from './pages/swallow/SwallowHubPage'
+import { SwallowPhasePage } from './pages/swallow/SwallowPhasePage'
+import { SwallowQuizPage } from './pages/swallow/SwallowQuizPage'
+import { MealRoundPage } from './pages/swallow/MealRoundPage'
+import { BackgroundPage } from './pages/swallow/BackgroundPage'
 import './index.css'
 
 createRoot(document.getElementById('root')!).render(
@@ -39,6 +44,12 @@ createRoot(document.getElementById('root')!).render(
           <Route path="fass/mistake-quiz" element={<FassMistakeQuizPage />} />
           <Route path="fass/self-check" element={<FassSelfCheckPage />} />
           <Route path="fass/evidence" element={<FassEvidencePage />} />
+          {/* Swallowing Module */}
+          <Route path="swallow" element={<SwallowHubPage />} />
+          <Route path="swallow/phases" element={<SwallowPhasePage />} />
+          <Route path="swallow/quiz" element={<SwallowQuizPage />} />
+          <Route path="swallow/meal-round" element={<MealRoundPage />} />
+          <Route path="swallow/background" element={<BackgroundPage />} />
         </Route>
       </Routes>
     </HashRouter>

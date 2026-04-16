@@ -1,4 +1,5 @@
 import type { SwallowingPhase } from './ohat'
+import type { Reference } from './common'
 
 export type Core10Group = 'A' | 'B' | 'C'
 export type Core10ItemId = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10
@@ -16,6 +17,8 @@ export interface Core10Item {
   scoreCriteria: Record<Core10Score, string>
   specificCriteria?: string
   errorConsequence: string
+  references: Reference[]
+  funFact: string
 }
 
 export type MistakeCategory = 'posture' | 'technique' | 'timing' | 'environment'

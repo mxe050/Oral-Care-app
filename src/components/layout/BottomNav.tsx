@@ -1,15 +1,16 @@
 import { NavLink } from 'react-router-dom'
-import { Home, Smile, Utensils } from 'lucide-react'
+import { Home, Smile, Brain, Utensils } from 'lucide-react'
 
 const navItems = [
   { to: '/', icon: Home, label: 'ホーム' },
   { to: '/ohat', icon: Smile, label: 'OHAT' },
+  { to: '/swallow', icon: Brain, label: '嚥下' },
   { to: '/fass', icon: Utensils, label: 'CORE10' },
 ]
 
 export function BottomNav() {
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900">
+    <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-gray-200 bg-white/95 backdrop-blur dark:border-gray-700 dark:bg-gray-900/95">
       <div className="mx-auto flex max-w-lg">
         {navItems.map(({ to, icon: Icon, label }) => (
           <NavLink
@@ -17,15 +18,21 @@ export function BottomNav() {
             to={to}
             end={to === '/'}
             className={({ isActive }) =>
-              `flex flex-1 flex-col items-center gap-1 py-2 text-xs transition-colors ${
+              `flex flex-1 flex-col items-center gap-1 py-2.5 text-xs transition-all duration-200 ${
                 isActive
-                  ? 'text-primary font-bold'
-                  : 'text-gray-500 dark:text-gray-400'
+                  ? 'text-teal-600 font-bold dark:text-teal-400'
+                  : 'text-gray-400 dark:text-gray-500'
               }`
             }
           >
-            <Icon size={22} />
-            <span>{label}</span>
+            {({ isActive }) => (
+              <>
+                <div className={`rounded-lg p-1 transition-all duration-200 ${isActive ? 'bg-teal-100 dark:bg-teal-900' : ''}`}>
+                  <Icon size={20} fill={isActive ? 'currentColor' : 'none'} />
+                </div>
+                <span>{label}</span>
+              </>
+            )}
           </NavLink>
         ))}
       </div>

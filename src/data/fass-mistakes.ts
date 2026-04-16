@@ -4,14 +4,14 @@ export const MISTAKE_SCENARIOS: MistakeScenario[] = [
   {
     id: 'ms-1',
     title: '食事介助場面A：姿勢の問題',
-    description: 'ベッド上で食事介助を受けている患者さんの場面です。姿勢に関する問題点を見つけてください。',
+    description: 'ベッド上で食事介助を受けている患者さんの場面です。仙骨座りになっており、複数の姿勢の問題が重なっています。体幹が5度傾くだけで咽頭内の食塊流路に左右差が生じます。姿勢に関する問題点を見つけてください。',
     mistakes: [
       {
         id: 'ms-1-m1',
         category: 'posture',
         region: { x: 30, y: 20, width: 40, height: 30 },
         description: 'あごが上がっている（頸部伸展位）',
-        explanation: '頸部伸展は喉頭蓋が開放され、誤嚥の最大リスク因子です。あごと胸骨の間は握りこぶし1個分が目安。',
+        explanation: '頸部伸展は喉頭蓋が開放され、誤嚥の最大リスク因子です。Shanahan et al.（1993）の研究では、chin-down姿勢で誤嚥リスクが約50%低減。あごと胸骨の間は握りこぶし1個分が目安です。',
         relatedCore10Items: [3],
       },
       {
@@ -19,7 +19,7 @@ export const MISTAKE_SCENARIOS: MistakeScenario[] = [
         category: 'posture',
         region: { x: 20, y: 50, width: 60, height: 20 },
         description: '身体が左に傾いている',
-        explanation: '体幹の傾きは咽頭構造を歪め、食塊が一側に偏り誤嚥リスクが高まります。',
+        explanation: '体幹の傾きは咽頭構造を歪め、食塊が一側に偏り誤嚥リスクが高まります。重力の影響で食塊が一側の梨状陥凹に偏在し、咽頭残留から誤嚥へ至る危険経路が形成されます。',
         relatedCore10Items: [1],
       },
       {
@@ -27,7 +27,7 @@ export const MISTAKE_SCENARIOS: MistakeScenario[] = [
         category: 'posture',
         region: { x: 25, y: 75, width: 50, height: 15 },
         description: '足底が接地していない',
-        explanation: '足底未接地は骨盤不安定→体幹動揺→頸部代償筋緊張→嚥下障害の連鎖を引き起こします。',
+        explanation: '足底未接地は骨盤不安定→体幹動揺→頸部代償筋緊張→嚥下障害の連鎖を引き起こします。足底にはメカノレセプターが密集しており、接地情報が即座に姿勢制御にフィードバックされます。',
         relatedCore10Items: [2],
       },
     ],
@@ -35,14 +35,14 @@ export const MISTAKE_SCENARIOS: MistakeScenario[] = [
   {
     id: 'ms-2',
     title: '食事介助場面B：介助手技の問題',
-    description: '車椅子で食事介助を受けている患者さんの場面です。介助手技の問題点を見つけてください。',
+    description: '車椅子で食事介助を受けている患者さんの場面です。介助者は立ったまま介助しており、スプーン操作に複数の問題があります。プロの介助者は「患者の目線より下から」を徹底します。介助手技の問題点を見つけてください。',
     mistakes: [
       {
         id: 'ms-2-m1',
         category: 'technique',
         region: { x: 50, y: 15, width: 30, height: 25 },
         description: 'スプーンを上方から運んでいる（顎が上がる）',
-        explanation: '上方からのスプーン操作は追視で顎が上がり頸部伸展→誤嚥リスク上昇。下方または水平から運ぶこと。',
+        explanation: '上方からのスプーン操作は追視で顎が上がり頸部伸展→誤嚥リスク上昇。Logemann et al.（2008）の研究では、頸部角度管理が誤嚥防止の最も効果的な介入の一つであることが示されています。下方または水平から運ぶことが鉄則です。',
         relatedCore10Items: [7],
       },
       {
@@ -50,7 +50,7 @@ export const MISTAKE_SCENARIOS: MistakeScenario[] = [
         category: 'technique',
         region: { x: 55, y: 30, width: 25, height: 20 },
         description: '逆手で介助している（右側から左手）',
-        explanation: '逆手介助は患者の頸部が横に回旋し、咽頭構造が歪み嚥下効率が低下します。',
+        explanation: '逆手介助は患者の頸部が横に回旋し、咽頭構造が歪み嚥下効率が低下します。頸部回旋は健側の梨状陥凹を広げ患側を狭めるため、リハビリでは意図的に使いますが、食事介助では事故の元です。',
         relatedCore10Items: [6],
       },
       {
@@ -58,7 +58,7 @@ export const MISTAKE_SCENARIOS: MistakeScenario[] = [
         category: 'technique',
         region: { x: 60, y: 45, width: 20, height: 15 },
         description: 'スプーンをまっすぐ引き抜いている',
-        explanation: '上唇でこすり取らせずに引き抜くと、食物が残ったり口腔外にこぼれます。',
+        explanation: '上唇でこすり取らせずに引き抜くと、食物がスプーン上に残り口腔外にこぼれます。赤ちゃんの離乳食介助と同じ原理で、上唇で取り込む動作が「食べる」の基本形です。',
         relatedCore10Items: [8],
       },
     ],
@@ -66,14 +66,14 @@ export const MISTAKE_SCENARIOS: MistakeScenario[] = [
   {
     id: 'ms-3',
     title: '食事介助場面C：タイミングと環境の問題',
-    description: '食堂で食事介助を受けている患者さんの場面です。タイミングや環境の問題点を見つけてください。',
+    description: '食堂で食事介助を受けている患者さんの場面です。周囲の環境が整理されておらず、介助のタイミングにも問題があります。嚥下1回にかかる時間は高齢者では2〜3秒に延長します。「急がば回れ」が誤嚥防止の鉄則です。',
     mistakes: [
       {
         id: 'ms-3-m1',
         category: 'timing',
         region: { x: 45, y: 30, width: 30, height: 20 },
         description: '嚥下を確認せずに次の食べ物を入れている',
-        explanation: '嚥下完了前の追加投入は咽頭残留量が増大し、溢れ出し誤嚥のリスクが高まります。',
+        explanation: '嚥下完了前の追加投入は咽頭残留量が増大し、溢れ出し誤嚥（overflow aspiration）のリスクが高まります。Robbins et al.（2008）の研究でも、嚥下ペースの管理不足が肺炎発症の独立した予測因子であることが示されています。',
         relatedCore10Items: [10],
       },
       {
@@ -81,7 +81,7 @@ export const MISTAKE_SCENARIOS: MistakeScenario[] = [
         category: 'timing',
         region: { x: 40, y: 25, width: 25, height: 15 },
         description: '食べている最中に話しかけている',
-        explanation: '発声時は声門が開放されるため、食物が気管に入る誤嚥リスクが上昇します。',
+        explanation: '発声時は声門が開放されるため、食物が気管に入る誤嚥リスクが上昇します。声かけは嚥下を確認してから行うべきです。「もぐもぐタイム」は「おしゃべりタイム」ではありません。',
         relatedCore10Items: [10],
       },
       {
@@ -89,7 +89,7 @@ export const MISTAKE_SCENARIOS: MistakeScenario[] = [
         category: 'environment',
         region: { x: 70, y: 10, width: 25, height: 20 },
         description: 'テレビがついたまま',
-        explanation: '先行期（認知期）の注意が分散し、嚥下準備反射が不十分になります。特に認知症患者で重要。',
+        explanation: '先行期（認知期）の注意が分散し、嚥下準備反射が不十分になります。特に認知症患者では、環境刺激の統制が食事安全の大前提。食事中は不要な感覚刺激をできるだけ減らしましょう。',
         relatedCore10Items: [5, 9],
       },
       {
@@ -97,7 +97,77 @@ export const MISTAKE_SCENARIOS: MistakeScenario[] = [
         category: 'environment',
         region: { x: 10, y: 40, width: 30, height: 20 },
         description: '食品が被介助者から見えない位置にある',
-        explanation: '「何を食べているか」の視覚認知は先行期の重要な要素。認知不足は嚥下準備反射の不足を招きます。',
+        explanation: '「何を食べているか」の視覚認知は先行期の重要な要素。食物の視覚情報で唾液腺は0.5秒以内に活動を開始します。「目で食べる」は科学的事実であり、先行期支援の核心です。',
+        relatedCore10Items: [5, 9],
+      },
+    ],
+  },
+  {
+    id: 'ms-4',
+    title: '食事介助場面D：食前確認の不足',
+    description: '長期入院中の患者さんの昼食介助場面です。食事が配膳されてすぐに介助を開始しようとしています。食前の安全確認手順が省略されています。「あ〜」と発声させるだけで咽頭貯留が分かる、コストゼロの最強スクリーニングが抜けていませんか？',
+    mistakes: [
+      {
+        id: 'ms-4-m1',
+        category: 'timing',
+        region: { x: 40, y: 20, width: 30, height: 25 },
+        description: '食前の発声確認をしていない',
+        explanation: '湿性嗄声は咽頭に唾液・分泌物が貯留していることを示します。Warms & Richards（2000）の研究では感度80%以上で喉頭侵入・誤嚥を検出できます。「あ〜」と一声出すだけのゼロコストスクリーニングを食前に必ず実施しましょう。',
+        relatedCore10Items: [4],
+      },
+      {
+        id: 'ms-4-m2',
+        category: 'posture',
+        region: { x: 30, y: 35, width: 40, height: 20 },
+        description: 'ギャッジアップの角度が不十分（約20度）',
+        explanation: 'ベッド上での食事は最低30度以上（理想的には60度以上）のギャッジアップが必要です。角度不足は仙骨座りを助長し、頸部過伸展→誤嚥リスク上昇の連鎖を引き起こします。',
+        relatedCore10Items: [1, 3],
+      },
+      {
+        id: 'ms-4-m3',
+        category: 'technique',
+        region: { x: 55, y: 40, width: 25, height: 15 },
+        description: '一口量が多すぎる（大さじ山盛り）',
+        explanation: '適切な一口量はティースプーン1杯（約3〜5ml）が目安です。一口量が多すぎると咽頭に食塊が溢れ、嚥下処理が追いつかず誤嚥のリスクが高まります。「少量頻回」が安全な介助の原則です。',
+        relatedCore10Items: [10],
+      },
+    ],
+  },
+  {
+    id: 'ms-5',
+    title: '食事介助場面E：複合的な問題',
+    description: '認知症の患者さんの夕食介助場面です。介助者は疲労しており、効率を優先した介助になっています。複数の領域にわたる問題が重なっています。安全な介助に「効率化」は禁物。一つひとつの確認が患者の命を守ります。',
+    mistakes: [
+      {
+        id: 'ms-5-m1',
+        category: 'technique',
+        region: { x: 45, y: 15, width: 30, height: 20 },
+        description: '介助者が立ったまま介助している（上方からの介助）',
+        explanation: '立位での介助は自然に「上から」のスプーン操作になり、患者の頸部伸展を誘発します。介助者は必ず座位をとり、患者と同じ目線かやや下に位置すべきです。疲労時こそ正しい姿勢を意識しましょう。',
+        relatedCore10Items: [7],
+      },
+      {
+        id: 'ms-5-m2',
+        category: 'timing',
+        region: { x: 50, y: 35, width: 25, height: 15 },
+        description: '口の中にまだ食物があるのに次を入れている',
+        explanation: '口腔内に前の食物が残っている状態で次の一口を入れると、口腔内で食塊が混在し、一度に大量の食物が咽頭に流入する危険があります。必ず口腔内が空になってから次の一口を運びましょう。',
+        relatedCore10Items: [10],
+      },
+      {
+        id: 'ms-5-m3',
+        category: 'environment',
+        region: { x: 15, y: 45, width: 25, height: 20 },
+        description: '隣のベッドの患者が大声で話しており、注意が散漫',
+        explanation: '認知症患者は環境からの刺激に影響されやすく、食事への集中が妨げられます。可能であればカーテンを引く、静かな場所に移動するなどの環境調整が先行期支援として重要です。',
+        relatedCore10Items: [5, 9],
+      },
+      {
+        id: 'ms-5-m4',
+        category: 'technique',
+        region: { x: 60, y: 25, width: 20, height: 15 },
+        description: '食事の内容を説明せずに口に運んでいる',
+        explanation: '「何を食べているか」を伝えないと先行期の認知プロセスが働きません。特に認知症患者では「これはお味噌汁ですよ」と毎回伝えることで、唾液分泌・嚥下準備反射が起動し、安全な嚥下につながります。',
         relatedCore10Items: [5, 9],
       },
     ],

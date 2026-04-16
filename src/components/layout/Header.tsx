@@ -1,6 +1,7 @@
 import { useNavigate, useLocation } from 'react-router-dom'
 import { ArrowLeft, Moon, Sun } from 'lucide-react'
 import { useAppStore } from '../../stores/app-store'
+import { XpDisplay } from '../ui/XpDisplay'
 
 export function Header() {
   const navigate = useNavigate()
@@ -14,21 +15,24 @@ export function Header() {
         {!isHome && (
           <button
             onClick={() => navigate(-1)}
-            className="rounded-full p-1.5 text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
+            className="rounded-full p-1.5 text-gray-600 transition-colors hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
           >
             <ArrowLeft size={20} />
           </button>
         )}
-        <h1 className="text-lg font-bold text-primary">
+        <h1 className="text-lg font-bold text-teal-700 dark:text-teal-400">
           OralCare Navi
         </h1>
       </div>
-      <button
-        onClick={toggleDarkMode}
-        className="rounded-full p-2 text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
-      >
-        {darkMode ? <Sun size={18} /> : <Moon size={18} />}
-      </button>
+      <div className="flex items-center gap-3">
+        <XpDisplay compact />
+        <button
+          onClick={toggleDarkMode}
+          className="rounded-full p-2 text-gray-600 transition-colors hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
+        >
+          {darkMode ? <Sun size={18} /> : <Moon size={18} />}
+        </button>
+      </div>
     </header>
   )
 }

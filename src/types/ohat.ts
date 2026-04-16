@@ -1,3 +1,5 @@
+import type { Reference } from './common'
+
 export type OhatCategoryId =
   | 'lips'
   | 'tongue'
@@ -40,6 +42,8 @@ export interface OhatCategory {
   swallowingPhases: SwallowingPhase[]
   phaseExplanation: string
   drugInfo?: DrugInfo
+  references: Reference[]
+  funFact: string
 }
 
 export interface RecommendedAction {

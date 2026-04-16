@@ -3,6 +3,8 @@ import type { QuizSession, QuizQuestion, DifficultyLevel, QuizType } from '../ty
 
 interface QuizState {
   session: QuizSession | null
+  currentStreak: number
+  bestStreak: number
   startSession: (type: QuizType, difficulty: DifficultyLevel, questions: QuizQuestion[]) => void
   answerQuestion: (selectedIds: string[]) => void
   nextQuestion: () => void
@@ -11,6 +13,8 @@ interface QuizState {
 
 export const useQuizStore = create<QuizState>()((set) => ({
   session: null,
+  currentStreak: 0,
+  bestStreak: 0,
 
   startSession: (type, difficulty, questions) =>
     set({
@@ -24,6 +28,7 @@ export const useQuizStore = create<QuizState>()((set) => ({
         startedAt: new Date(),
         score: 0,
       },
+      currentStreak: 0,
     }),
 
   answerQuestion: (selectedIds) =>
@@ -37,12 +42,18 @@ export const useQuizStore = create<QuizState>()((set) => ({
         ...state.session.answers,
         { questionId: question.id, selectedIds, correct },
       ]
+
+      const newStreak = correct ? state.currentStreak + 1 : 0
+      const newBestStreak = Math.max(state.bestStreak, newStreak)
+
       return {
         session: {
           ...state.session,
           answers: newAnswers,
           score: newAnswers.filter((a) => a.correct).length,
         },
+        currentStreak: newStreak,
+        bestStreak: newBestStreak,
       }
     }),
 

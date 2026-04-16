@@ -1,75 +1,77 @@
 import { Link } from 'react-router-dom'
-import { BookOpen, HelpCircle, ClipboardList, Users, Trophy, Star } from 'lucide-react'
+import { Brain, Eye, HelpCircle, BookOpen, Trophy, Star } from 'lucide-react'
 import { useProgressStore } from '../../stores/progress-store'
 import { BADGES } from '../../types/common'
 
 const sections = [
   {
-    to: '/ohat/learn',
-    icon: BookOpen,
-    title: '学ぶ',
-    description: '8カテゴリの判定基準と嚥下5期モデルとの関連を学ぶ',
-    gradient: 'from-teal-400 to-teal-600',
-    sectionKey: 'ohat-learn',
-  },
-  {
-    to: '/ohat/quiz',
-    icon: HelpCircle,
-    title: '写真判定クイズ',
-    description: '症例写真を見てスコアを判定するトレーニング',
-    gradient: 'from-blue-400 to-blue-600',
-    sectionKey: 'ohat-quiz',
-  },
-  {
-    to: '/ohat/clinical',
-    icon: ClipboardList,
-    title: '臨床記録',
-    description: 'OHAT-J評価フォームで記録・スコア推移を確認',
+    to: '/swallow/phases',
+    icon: Brain,
+    title: '嚥下5相モデル',
+    description: '食べ物の旅を追え -- 5つのフェーズを学ぶ',
     gradient: 'from-purple-400 to-purple-600',
-    sectionKey: 'ohat-clinical',
+    emoji: '\uD83E\uDDE0',
+    sectionKey: 'swallow-phases',
   },
   {
-    to: '/ohat/next-action',
-    icon: Users,
-    title: '多職種連携クイズ',
-    description: 'スコアに応じた適切な相談先を判断するクイズ',
+    to: '/swallow/meal-round',
+    icon: Eye,
+    title: '食事ラウンド',
+    description: 'OODAループで食事観察を実践',
+    gradient: 'from-blue-400 to-blue-600',
+    emoji: '\uD83D\uDC41\uFE0F',
+    sectionKey: 'swallow-meal-round',
+  },
+  {
+    to: '/swallow/quiz',
+    icon: HelpCircle,
+    title: '嚥下クイズ',
+    description: '嚥下の知識をテストしよう',
+    gradient: 'from-teal-400 to-teal-600',
+    emoji: '\u2753',
+    sectionKey: 'swallow-quiz',
+  },
+  {
+    to: '/swallow/background',
+    icon: BookOpen,
+    title: '背景知識',
+    description: 'なぜ嚥下障害が起こるか',
     gradient: 'from-amber-400 to-amber-600',
-    sectionKey: 'ohat-next-action',
+    emoji: '\uD83D\uDCDA',
+    sectionKey: 'swallow-background',
   },
 ]
 
-export function OhatHubPage() {
+export function SwallowHubPage() {
   const completedSections = useProgressStore((s) => s.completedSections)
   const getCompletionRate = useProgressStore((s) => s.getCompletionRate)
   const badges = useProgressStore((s) => s.badges)
-  const progress = getCompletionRate('ohat')
+  const progress = getCompletionRate('swallow')
 
-  // Find next recommended section
   const nextRecommended = sections.find((s) => !completedSections[s.sectionKey])
 
-  // OHAT-related badges
-  const ohatBadges = badges.filter((b) =>
-    ['ohatComplete', 'perfectQuiz', 'clinicalFirst', 'quizStreak3', 'quizStreak5'].includes(b.id),
+  const swallowBadges = badges.filter((b) =>
+    ['swallowMaster'].includes(b.id),
   )
 
   return (
     <div className="mx-auto max-w-lg space-y-6">
       <div>
         <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100">
-          OHAT-J マスター
+          嚥下の知識
         </h2>
         <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
-          口腔アセスメントの「見る目」を養う
+          食べ物の旅路を理解し、安全な食事支援を学ぶ
         </p>
         {progress > 0 && (
           <div className="mt-3">
             <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
               <span>モジュール進捗</span>
-              <span className="font-bold text-teal-600 dark:text-teal-400">{progress}%</span>
+              <span className="font-bold text-purple-600 dark:text-purple-400">{progress}%</span>
             </div>
             <div className="mt-1 h-2 overflow-hidden rounded-full bg-gray-200 dark:bg-gray-700">
               <div
-                className="h-full rounded-full bg-gradient-to-r from-teal-400 to-teal-600 transition-all duration-700"
+                className="h-full rounded-full bg-gradient-to-r from-purple-400 to-purple-600 transition-all duration-700"
                 style={{ width: `${progress}%` }}
               />
             </div>
@@ -78,7 +80,7 @@ export function OhatHubPage() {
       </div>
 
       <div className="space-y-3">
-        {sections.map(({ to, icon: Icon, title, description, gradient, sectionKey }) => {
+        {sections.map(({ to, icon: Icon, title, description, gradient, emoji, sectionKey }) => {
           const isCompleted = completedSections[sectionKey]
           const isRecommended = nextRecommended?.sectionKey === sectionKey
 
@@ -93,7 +95,7 @@ export function OhatHubPage() {
               }`}
             >
               {isRecommended && (
-                <span className="absolute -top-2 right-3 flex items-center gap-1 rounded-full bg-teal-500 px-2.5 py-0.5 text-[10px] font-bold text-white shadow-sm">
+                <span className="absolute -top-2 right-3 flex items-center gap-1 rounded-full bg-purple-500 px-2.5 py-0.5 text-[10px] font-bold text-white shadow-sm">
                   <Star size={10} /> おすすめ
                 </span>
               )}
@@ -109,20 +111,20 @@ export function OhatHubPage() {
                 </div>
                 <p className="text-xs text-gray-500 dark:text-gray-400">{description}</p>
               </div>
+              <span className="text-xl">{emoji}</span>
             </Link>
           )
         })}
       </div>
 
-      {/* Earned badges for this module */}
-      {ohatBadges.length > 0 && (
+      {swallowBadges.length > 0 && (
         <div className="rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-900">
           <div className="mb-2 flex items-center gap-2">
             <Trophy size={14} className="text-amber-500" />
             <h3 className="text-xs font-bold text-gray-700 dark:text-gray-300">獲得バッジ</h3>
           </div>
           <div className="flex flex-wrap gap-2">
-            {ohatBadges.map((b) => {
+            {swallowBadges.map((b) => {
               const info = BADGES[b.id as keyof typeof BADGES]
               return (
                 <span

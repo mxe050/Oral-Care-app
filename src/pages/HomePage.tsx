@@ -1,6 +1,11 @@
+import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
-import { Smile, Utensils, BookOpen } from 'lucide-react'
+import { Smile, Brain, Utensils, BookOpen, Trophy, Sparkles } from 'lucide-react'
 import { useProgressStore } from '../stores/progress-store'
+import { XpDisplay } from '../components/ui/XpDisplay'
+import { StreakDisplay } from '../components/ui/StreakDisplay'
+import { OHAT_QUIZ_ITEMS } from '../data/ohat-quiz-items'
+import { BADGES } from '../types/common'
 
 const modules = [
   {
@@ -8,38 +13,79 @@ const modules = [
     icon: Smile,
     title: 'OHAT-J マスター',
     subtitle: '口を見る力を養う',
-    description: '8カテゴリの口腔アセスメントを写真判定クイズで学ぶ',
-    color: 'bg-teal-500',
+    description: '8カテゴリの口腔アセスメントを学ぶ',
+    gradient: 'from-teal-400 to-teal-600',
     progressKey: 'ohat',
+  },
+  {
+    to: '/swallow',
+    icon: Brain,
+    title: '嚥下の知識',
+    subtitle: '食べ物の旅を追え',
+    description: '嚥下5相モデルと食事観察を学ぶ',
+    gradient: 'from-purple-400 to-purple-600',
+    progressKey: 'swallow',
   },
   {
     to: '/fass',
     icon: Utensils,
     title: 'CORE10 マスター',
     subtitle: '食を助ける力を磨く',
-    description: '10項目の食事介助スキルを間違い探しクイズで鍛える',
-    color: 'bg-amber-500',
+    description: '10項目の食事介助スキルを鍛える',
+    gradient: 'from-amber-400 to-amber-600',
     progressKey: 'fass',
   },
 ]
 
 export function HomePage() {
   const getCompletionRate = useProgressStore((s) => s.getCompletionRate)
+  const badges = useProgressStore((s) => s.badges)
+  const checkStreak = useProgressStore((s) => s.checkStreak)
+
+  // Check streak on home load
+  useMemo(() => {
+    checkStreak()
+  }, [checkStreak])
+
+  // Daily challenge: pick a random quiz question
+  const dailyChallenge = useMemo(() => {
+    const today = new Date().toDateString()
+    const seed = today.split('').reduce((a, c) => a + c.charCodeAt(0), 0)
+    return OHAT_QUIZ_ITEMS[seed % OHAT_QUIZ_ITEMS.length]
+  }, [])
 
   return (
     <div className="mx-auto max-w-lg space-y-6">
-      <div className="text-center">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-          OralCare Navi
-        </h2>
-        <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
-          新人看護師のための口腔管理教育アプリ
-        </p>
-      </div>
+      {/* XP & Streak */}
+      <XpDisplay />
+      <StreakDisplay />
 
+      {/* Daily Challenge */}
+      <Link
+        to="/ohat/quiz"
+        className="block rounded-2xl bg-gradient-to-r from-teal-500 to-teal-700 p-5 text-white shadow-lg transition-all hover:shadow-xl active:scale-[0.98]"
+      >
+        <div className="mb-2 flex items-center gap-2">
+          <Sparkles size={18} />
+          <span className="text-sm font-bold uppercase tracking-wider opacity-90">
+            今日のチャレンジ
+          </span>
+        </div>
+        <p className="text-sm leading-relaxed opacity-95">
+          {dailyChallenge?.prompt ?? 'クイズに挑戦して知識を試そう!'}
+        </p>
+        <div className="mt-3 inline-block rounded-full bg-white/20 px-4 py-1.5 text-xs font-bold backdrop-blur">
+          挑戦する →
+        </div>
+      </Link>
+
+      {/* Module Cards */}
       <div className="space-y-4">
-        {modules.map(({ to, icon: Icon, title, subtitle, description, color, progressKey }) => {
+        {modules.map(({ to, icon: Icon, title, subtitle, description, gradient, progressKey }) => {
           const progress = getCompletionRate(progressKey)
+          const circumference = 2 * Math.PI * 20
+          const strokeDashoffset = circumference - (progress / 100) * circumference
+
           return (
             <Link
               key={to}
@@ -47,25 +93,46 @@ export function HomePage() {
               className="block rounded-2xl border border-gray-200 bg-white p-5 shadow-sm transition-all hover:shadow-md active:scale-[0.98] dark:border-gray-700 dark:bg-gray-900"
             >
               <div className="flex items-start gap-4">
-                <div className={`${color} flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-white`}>
-                  <Icon size={24} />
+                <div className="relative">
+                  {/* Progress ring */}
+                  <svg width={52} height={52} className="-rotate-90">
+                    <circle
+                      cx={26}
+                      cy={26}
+                      r={20}
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                      className="text-gray-100 dark:text-gray-800"
+                    />
+                    {progress > 0 && (
+                      <circle
+                        cx={26}
+                        cy={26}
+                        r={20}
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                        strokeLinecap="round"
+                        strokeDasharray={circumference}
+                        strokeDashoffset={strokeDashoffset}
+                        className="text-teal-500 transition-all duration-700"
+                      />
+                    )}
+                  </svg>
+                  <div className={`absolute inset-0 flex items-center justify-center`}>
+                    <div className={`flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br ${gradient} text-white`}>
+                      <Icon size={18} />
+                    </div>
+                  </div>
                 </div>
                 <div className="flex-1">
                   <h3 className="font-bold text-gray-900 dark:text-gray-100">{title}</h3>
-                  <p className="text-sm font-medium text-primary">{subtitle}</p>
+                  <p className="text-sm font-medium text-teal-600 dark:text-teal-400">{subtitle}</p>
                   <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">{description}</p>
                   {progress > 0 && (
-                    <div className="mt-3">
-                      <div className="flex items-center justify-between text-xs text-gray-500">
-                        <span>進捗</span>
-                        <span>{progress}%</span>
-                      </div>
-                      <div className="mt-1 h-1.5 rounded-full bg-gray-200 dark:bg-gray-700">
-                        <div
-                          className="h-1.5 rounded-full bg-primary transition-all"
-                          style={{ width: `${progress}%` }}
-                        />
-                      </div>
+                    <div className="mt-2 text-xs font-bold text-teal-600 dark:text-teal-400">
+                      {progress}% 完了
                     </div>
                   )}
                 </div>
@@ -75,12 +142,40 @@ export function HomePage() {
         })}
       </div>
 
+      {/* Earned Badges */}
+      {badges.length > 0 && (
+        <div className="rounded-2xl border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-900">
+          <div className="mb-3 flex items-center gap-2">
+            <Trophy size={16} className="text-amber-500" />
+            <h3 className="text-sm font-bold text-gray-900 dark:text-gray-100">獲得バッジ</h3>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {badges.map((b) => {
+              const badgeInfo = BADGES[b.id as keyof typeof BADGES]
+              return (
+                <div
+                  key={b.id}
+                  className="flex items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1.5 text-xs dark:bg-gray-800"
+                  title={badgeInfo?.description}
+                >
+                  <span>{badgeInfo?.emoji ?? '🏅'}</span>
+                  <span className="font-medium text-gray-700 dark:text-gray-300">
+                    {badgeInfo?.name ?? b.name}
+                  </span>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      )}
+
+      {/* Prologue Link */}
       <Link
         to="/prologue"
-        className="flex items-center justify-center gap-2 rounded-xl border border-dashed border-gray-300 p-3 text-sm text-gray-500 transition-colors hover:border-primary hover:text-primary dark:border-gray-600 dark:text-gray-400"
+        className="flex items-center justify-center gap-2 rounded-xl border border-dashed border-gray-300 p-4 text-sm text-gray-500 transition-all hover:border-teal-400 hover:bg-teal-50 hover:text-teal-700 dark:border-gray-600 dark:text-gray-400 dark:hover:border-teal-600 dark:hover:bg-teal-950 dark:hover:text-teal-300"
       >
         <BookOpen size={16} />
-        なぜ口腔ケアが大切なのか？
+        なぜ口腔ケアが大切なのか?
       </Link>
     </div>
   )

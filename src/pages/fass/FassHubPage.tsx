@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
-import { BookOpen, Search, Video, BarChart3 } from 'lucide-react'
+import { BookOpen, Search, Video, BarChart3, Trophy, Star } from 'lucide-react'
+import { useProgressStore } from '../../stores/progress-store'
+import { BADGES } from '../../types/common'
 
 const sections = [
   {
@@ -7,32 +9,47 @@ const sections = [
     icon: BookOpen,
     title: '学ぶ',
     description: 'CORE10の10項目を3群に分けて段階的に学習',
-    color: 'bg-amber-100 text-amber-700 dark:bg-amber-900 dark:text-amber-300',
+    gradient: 'from-amber-400 to-amber-600',
+    sectionKey: 'fass-learn',
   },
   {
     to: '/fass/mistake-quiz',
     icon: Search,
     title: '間違い探しクイズ',
     description: '食事介助場面の問題点を見つけるトレーニング',
-    color: 'bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300',
+    gradient: 'from-red-400 to-red-600',
+    sectionKey: 'fass-mistake-quiz',
   },
   {
     to: '/fass/self-check',
     icon: Video,
     title: 'セルフチェック',
     description: 'CORE10チェックリストで自分の介助スキルを評価',
-    color: 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300',
+    gradient: 'from-green-400 to-green-600',
+    sectionKey: 'fass-self-check',
   },
   {
     to: '/fass/evidence',
     icon: BarChart3,
     title: 'エビデンス',
     description: 'FASS研究の重要な知見とデータ',
-    color: 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300',
+    gradient: 'from-blue-400 to-blue-600',
+    sectionKey: 'fass-evidence',
   },
 ]
 
 export function FassHubPage() {
+  const completedSections = useProgressStore((s) => s.completedSections)
+  const getCompletionRate = useProgressStore((s) => s.getCompletionRate)
+  const badges = useProgressStore((s) => s.badges)
+  const progress = getCompletionRate('fass')
+
+  const nextRecommended = sections.find((s) => !completedSections[s.sectionKey])
+
+  const fassBadges = badges.filter((b) =>
+    ['core10Complete', 'perfectQuiz'].includes(b.id),
+  )
+
   return (
     <div className="mx-auto max-w-lg space-y-6">
       <div>
@@ -42,25 +59,80 @@ export function FassHubPage() {
         <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
           食事介助の「手の技」を客観的に評価・向上させる
         </p>
+        {progress > 0 && (
+          <div className="mt-3">
+            <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
+              <span>モジュール進捗</span>
+              <span className="font-bold text-amber-600 dark:text-amber-400">{progress}%</span>
+            </div>
+            <div className="mt-1 h-2 overflow-hidden rounded-full bg-gray-200 dark:bg-gray-700">
+              <div
+                className="h-full rounded-full bg-gradient-to-r from-amber-400 to-amber-600 transition-all duration-700"
+                style={{ width: `${progress}%` }}
+              />
+            </div>
+          </div>
+        )}
       </div>
 
       <div className="space-y-3">
-        {sections.map(({ to, icon: Icon, title, description, color }) => (
-          <Link
-            key={to}
-            to={to}
-            className="flex items-center gap-4 rounded-xl border border-gray-200 bg-white p-4 transition-all hover:shadow-md active:scale-[0.98] dark:border-gray-700 dark:bg-gray-900"
-          >
-            <div className={`${color} flex h-10 w-10 shrink-0 items-center justify-center rounded-lg`}>
-              <Icon size={20} />
-            </div>
-            <div>
-              <h3 className="font-bold text-gray-900 dark:text-gray-100">{title}</h3>
-              <p className="text-xs text-gray-500 dark:text-gray-400">{description}</p>
-            </div>
-          </Link>
-        ))}
+        {sections.map(({ to, icon: Icon, title, description, gradient, sectionKey }) => {
+          const isCompleted = completedSections[sectionKey]
+          const isRecommended = nextRecommended?.sectionKey === sectionKey
+
+          return (
+            <Link
+              key={to}
+              to={to}
+              className={`relative flex items-center gap-4 rounded-xl border bg-white p-4 transition-all hover:shadow-md active:scale-[0.98] dark:bg-gray-900 ${
+                isCompleted
+                  ? 'border-green-200 dark:border-green-800'
+                  : 'border-gray-200 dark:border-gray-700'
+              }`}
+            >
+              {isRecommended && (
+                <span className="absolute -top-2 right-3 flex items-center gap-1 rounded-full bg-amber-500 px-2.5 py-0.5 text-[10px] font-bold text-white shadow-sm">
+                  <Star size={10} /> おすすめ
+                </span>
+              )}
+              <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${gradient} text-white shadow-sm`}>
+                <Icon size={20} />
+              </div>
+              <div className="flex-1">
+                <div className="flex items-center gap-2">
+                  <h3 className="font-bold text-gray-900 dark:text-gray-100">{title}</h3>
+                  {isCompleted && (
+                    <span className="text-green-500">&#10003;</span>
+                  )}
+                </div>
+                <p className="text-xs text-gray-500 dark:text-gray-400">{description}</p>
+              </div>
+            </Link>
+          )
+        })}
       </div>
+
+      {fassBadges.length > 0 && (
+        <div className="rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-900">
+          <div className="mb-2 flex items-center gap-2">
+            <Trophy size={14} className="text-amber-500" />
+            <h3 className="text-xs font-bold text-gray-700 dark:text-gray-300">獲得バッジ</h3>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {fassBadges.map((b) => {
+              const info = BADGES[b.id as keyof typeof BADGES]
+              return (
+                <span
+                  key={b.id}
+                  className="rounded-full bg-gray-100 px-2.5 py-1 text-xs dark:bg-gray-800"
+                >
+                  {info?.emoji} {info?.name}
+                </span>
+              )
+            })}
+          </div>
+        </div>
+      )}
     </div>
   )
 }
