@@ -1,0 +1,105 @@
+import type { MistakeScenario } from '../types/core10'
+
+export const MISTAKE_SCENARIOS: MistakeScenario[] = [
+  {
+    id: 'ms-1',
+    title: '食事介助場面A：姿勢の問題',
+    description: 'ベッド上で食事介助を受けている患者さんの場面です。姿勢に関する問題点を見つけてください。',
+    mistakes: [
+      {
+        id: 'ms-1-m1',
+        category: 'posture',
+        region: { x: 30, y: 20, width: 40, height: 30 },
+        description: 'あごが上がっている（頸部伸展位）',
+        explanation: '頸部伸展は喉頭蓋が開放され、誤嚥の最大リスク因子です。あごと胸骨の間は握りこぶし1個分が目安。',
+        relatedCore10Items: [3],
+      },
+      {
+        id: 'ms-1-m2',
+        category: 'posture',
+        region: { x: 20, y: 50, width: 60, height: 20 },
+        description: '身体が左に傾いている',
+        explanation: '体幹の傾きは咽頭構造を歪め、食塊が一側に偏り誤嚥リスクが高まります。',
+        relatedCore10Items: [1],
+      },
+      {
+        id: 'ms-1-m3',
+        category: 'posture',
+        region: { x: 25, y: 75, width: 50, height: 15 },
+        description: '足底が接地していない',
+        explanation: '足底未接地は骨盤不安定→体幹動揺→頸部代償筋緊張→嚥下障害の連鎖を引き起こします。',
+        relatedCore10Items: [2],
+      },
+    ],
+  },
+  {
+    id: 'ms-2',
+    title: '食事介助場面B：介助手技の問題',
+    description: '車椅子で食事介助を受けている患者さんの場面です。介助手技の問題点を見つけてください。',
+    mistakes: [
+      {
+        id: 'ms-2-m1',
+        category: 'technique',
+        region: { x: 50, y: 15, width: 30, height: 25 },
+        description: 'スプーンを上方から運んでいる（顎が上がる）',
+        explanation: '上方からのスプーン操作は追視で顎が上がり頸部伸展→誤嚥リスク上昇。下方または水平から運ぶこと。',
+        relatedCore10Items: [7],
+      },
+      {
+        id: 'ms-2-m2',
+        category: 'technique',
+        region: { x: 55, y: 30, width: 25, height: 20 },
+        description: '逆手で介助している（右側から左手）',
+        explanation: '逆手介助は患者の頸部が横に回旋し、咽頭構造が歪み嚥下効率が低下します。',
+        relatedCore10Items: [6],
+      },
+      {
+        id: 'ms-2-m3',
+        category: 'technique',
+        region: { x: 60, y: 45, width: 20, height: 15 },
+        description: 'スプーンをまっすぐ引き抜いている',
+        explanation: '上唇でこすり取らせずに引き抜くと、食物が残ったり口腔外にこぼれます。',
+        relatedCore10Items: [8],
+      },
+    ],
+  },
+  {
+    id: 'ms-3',
+    title: '食事介助場面C：タイミングと環境の問題',
+    description: '食堂で食事介助を受けている患者さんの場面です。タイミングや環境の問題点を見つけてください。',
+    mistakes: [
+      {
+        id: 'ms-3-m1',
+        category: 'timing',
+        region: { x: 45, y: 30, width: 30, height: 20 },
+        description: '嚥下を確認せずに次の食べ物を入れている',
+        explanation: '嚥下完了前の追加投入は咽頭残留量が増大し、溢れ出し誤嚥のリスクが高まります。',
+        relatedCore10Items: [10],
+      },
+      {
+        id: 'ms-3-m2',
+        category: 'timing',
+        region: { x: 40, y: 25, width: 25, height: 15 },
+        description: '食べている最中に話しかけている',
+        explanation: '発声時は声門が開放されるため、食物が気管に入る誤嚥リスクが上昇します。',
+        relatedCore10Items: [10],
+      },
+      {
+        id: 'ms-3-m3',
+        category: 'environment',
+        region: { x: 70, y: 10, width: 25, height: 20 },
+        description: 'テレビがついたまま',
+        explanation: '先行期（認知期）の注意が分散し、嚥下準備反射が不十分になります。特に認知症患者で重要。',
+        relatedCore10Items: [5, 9],
+      },
+      {
+        id: 'ms-3-m4',
+        category: 'environment',
+        region: { x: 10, y: 40, width: 30, height: 20 },
+        description: '食品が被介助者から見えない位置にある',
+        explanation: '「何を食べているか」の視覚認知は先行期の重要な要素。認知不足は嚥下準備反射の不足を招きます。',
+        relatedCore10Items: [5, 9],
+      },
+    ],
+  },
+]
