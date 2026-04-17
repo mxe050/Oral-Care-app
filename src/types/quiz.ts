@@ -1,6 +1,6 @@
 import type { OhatCategoryId } from './ohat'
 
-export type DifficultyLevel = 'beginner' | 'intermediate' | 'advanced'
+export type DifficultyLevel = 'beginner' | 'intermediate' | 'advanced' | 'expert'
 
 export type QuizType = 'ohat_photo' | 'next_action' | 'mistake_finder'
 

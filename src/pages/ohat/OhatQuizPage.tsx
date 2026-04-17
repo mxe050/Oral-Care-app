@@ -11,18 +11,28 @@ const difficultyLabels: Record<DifficultyLevel, string> = {
   beginner: '初級',
   intermediate: '中級',
   advanced: '上級',
+  expert: '最上級',
+}
+
+const difficultySubtitles: Record<DifficultyLevel, string> = {
+  beginner: '',
+  intermediate: '',
+  advanced: '',
+  expert: '舌の評価は難しい',
 }
 
 const difficultyDescriptions: Record<DifficultyLevel, string> = {
   beginner: '典型的な症例で基本を学ぶ -- まずはここから',
   intermediate: '境界例の判定力を鍛える -- 実践的な問題',
   advanced: '複合所見・臨床判断を含む -- 腕試し',
+  expert: '実写真で舌を判定 -- 正常変異・病的所見を見分ける',
 }
 
 const difficultyGradients: Record<DifficultyLevel, string> = {
   beginner: 'from-green-400 to-green-600',
   intermediate: 'from-yellow-400 to-yellow-600',
   advanced: 'from-red-400 to-red-600',
+  expert: 'from-purple-500 to-fuchsia-700',
 }
 
 export function OhatQuizPage() {
@@ -110,27 +120,40 @@ export function OhatQuizPage() {
           <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">難易度を選んでください</p>
         </div>
         <div className="space-y-3">
-          {(['beginner', 'intermediate', 'advanced'] as const).map((d) => (
-            <button
-              key={d}
-              onClick={() => setDifficulty(d)}
-              className="w-full rounded-xl border border-gray-200 bg-white p-5 text-left transition-all hover:shadow-md active:scale-[0.98] dark:border-gray-700 dark:bg-gray-900"
-            >
-              <div className="flex items-center gap-3">
-                <div className={`flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br ${difficultyGradients[d]} text-lg font-bold text-white`}>
-                  {d === 'beginner' ? '1' : d === 'intermediate' ? '2' : '3'}
-                </div>
-                <div>
-                  <div className="font-bold text-gray-900 dark:text-gray-100">
-                    {difficultyLabels[d]}
+          {(['beginner', 'intermediate', 'advanced', 'expert'] as const).map((d, i) => {
+            const count = OHAT_QUIZ_ITEMS.filter((q) => q.difficulty === d).length
+            return (
+              <button
+                key={d}
+                onClick={() => setDifficulty(d)}
+                className="w-full rounded-xl border border-gray-200 bg-white p-5 text-left transition-all hover:shadow-md active:scale-[0.98] dark:border-gray-700 dark:bg-gray-900"
+              >
+                <div className="flex items-center gap-3">
+                  <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${difficultyGradients[d]} text-lg font-bold text-white`}>
+                    {i + 1}
                   </div>
-                  <p className="mt-0.5 text-xs text-gray-500 dark:text-gray-400">
-                    {difficultyDescriptions[d]}
-                  </p>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2">
+                      <span className="font-bold text-gray-900 dark:text-gray-100">
+                        {difficultyLabels[d]}
+                      </span>
+                      {difficultySubtitles[d] && (
+                        <span className="rounded-full bg-fuchsia-100 px-2 py-0.5 text-[10px] font-bold text-fuchsia-700 dark:bg-fuchsia-900 dark:text-fuchsia-300">
+                          {difficultySubtitles[d]}
+                        </span>
+                      )}
+                    </div>
+                    <p className="mt-0.5 text-xs text-gray-500 dark:text-gray-400">
+                      {difficultyDescriptions[d]}
+                    </p>
+                    <p className="mt-1 text-[10px] text-gray-400 dark:text-gray-500">
+                      全 {count} 問
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </button>
-          ))}
+              </button>
+            )
+          })}
         </div>
       </div>
     )
@@ -224,8 +247,18 @@ export function OhatQuizPage() {
       </div>
 
       {/* Question */}
-      <div className="rounded-xl bg-white p-5 shadow-sm dark:bg-gray-900">
-        <p className="text-base font-medium text-gray-900 dark:text-gray-100">
+      <div className="overflow-hidden rounded-xl bg-white shadow-sm dark:bg-gray-900">
+        {question.imageUrl && (
+          <div className="aspect-[4/3] w-full overflow-hidden bg-gray-100 dark:bg-gray-800">
+            <img
+              src={`${import.meta.env.BASE_URL}${question.imageUrl}`}
+              alt="判定対象の所見"
+              className="h-full w-full object-contain"
+              loading="lazy"
+            />
+          </div>
+        )}
+        <p className="p-5 text-base font-medium text-gray-900 dark:text-gray-100">
           {question.prompt}
         </p>
       </div>

@@ -274,4 +274,125 @@ export const OHAT_QUIZ_ITEMS: QuizQuestion[] = [
     },
     explanation: '残存歯カテゴリ：4本以上のう蝕・破折＝スコア2。残根は感染リスクの温床であり、痛みの有無に関わらず歯科介入が必要です。',
   },
+  // ===== 最上級：舌の評価は難しい（6問・写真付き） =====
+  {
+    id: 'ohat-e-tongue-1',
+    type: 'ohat_photo',
+    difficulty: 'expert',
+    categoryId: 'tongue',
+    imageUrl: 'images/tongue/溝圧痕があるが湿潤正常.jpg',
+    prompt: '舌背に溝（fissure）と歯圧痕があり、ピンク色で湿潤しています。このスコアは？',
+    options: [
+      { id: 'a', text: '0（健全）', isCorrect: true },
+      { id: 'b', text: '1（やや不良）', isCorrect: false },
+      { id: 'c', text: '2（病的）', isCorrect: false },
+    ],
+    correctAnswerIds: ['a'],
+    narrativeFeedback: {
+      correct: '素晴らしい！溝状舌（fissured tongue）と歯圧痕は日本人の約5〜20%に見られる正常変異です。判定のポイントは「色調（ピンク）」と「湿潤」。これらが保たれていればスコア0。初学者は「溝があるから異常」と誤判定しがちです。',
+      incorrect: '溝状舌（fissured tongue）と歯圧痕は正常変異です。Geographic tongueと混同されがちですが、色調がピンクで湿潤しており、舌苔・発赤・潰瘍がなければスコア0です。外見の違いだけで判定せず、粘膜の状態を見ることが重要です。',
+    },
+    explanation:
+      '溝状舌は日本人の5〜20%に見られる正常所見（Assimakopoulos 2002）。歯圧痕は舌の機能低下や歯列不正の所見でもありますが、粘膜が健全ならスコアには影響しません。',
+  },
+  {
+    id: 'ohat-e-tongue-2',
+    type: 'ohat_photo',
+    difficulty: 'expert',
+    categoryId: 'tongue',
+    imageUrl: 'images/tongue/舌扁桃正常.jpg',
+    prompt: '舌後方（舌根部）に粒状の隆起した組織が複数見えます。このスコアは？',
+    options: [
+      { id: 'a', text: '0（健全）', isCorrect: true },
+      { id: 'b', text: '1（やや不良）', isCorrect: false },
+      { id: 'c', text: '2（病的）', isCorrect: false },
+    ],
+    correctAnswerIds: ['a'],
+    narrativeFeedback: {
+      correct: '大正解！これは舌扁桃（lingual tonsil）で、舌根部にある**正常なリンパ組織**です。ワルダイエル咽頭輪の一部を構成し、上気道の免疫防御を担っています。腫瘤や異常所見ではありません。',
+      incorrect: '舌根部の粒状組織は舌扁桃（lingual tonsil）で正常なリンパ組織です。口蓋扁桃・咽頭扁桃とともにワルダイエル咽頭輪を形成しています。腫瘤と勘違いしやすい代表的な正常解剖です。知識の浅いまま「異常」と判定してしまわないように注意。',
+    },
+    explanation:
+      '舌扁桃はワルダイエル咽頭輪の一部（Scadding 1967）。舌後方のチェック時に「腫瘤」と誤判定されやすい正常構造の代表例。',
+  },
+  {
+    id: 'ohat-e-tongue-3',
+    type: 'ohat_photo',
+    difficulty: 'expert',
+    categoryId: 'tongue',
+    imageUrl: 'images/tongue/舌苔やや不良.jpg',
+    prompt: '舌背の広範囲に厚い白色〜黄白色の舌苔が付着しています。潰瘍や赤みは目立ちません。このスコアは？',
+    options: [
+      { id: 'a', text: '0（健全）', isCorrect: false },
+      { id: 'b', text: '1（やや不良）', isCorrect: true },
+      { id: 'c', text: '2（病的）', isCorrect: false },
+    ],
+    correctAnswerIds: ['b'],
+    narrativeFeedback: {
+      correct: '正解です！厚い舌苔はスコア1の代表例。舌苔は細菌・剥離上皮・食物残渣の混合物で、舌苔1mgあたり数百万〜数千万の細菌が生息。誤嚥性肺炎の独立リスク因子です（Abe 2006）。機械的清掃（舌ブラシ）で除去可能です。',
+      incorrect: '厚い舌苔はスコア1（やや不良）です。スコア2になるのは潰瘍・紅色/白色パッチ・腫脹など構造的異常を伴う場合。舌苔単独であっても、経口摂取量が少ない・口腔ケア不足・唾液量低下などの背景があるサインです。',
+    },
+    explanation:
+      '舌苔の量と誤嚥性肺炎発症リスクには正の相関（Abe 2006）。舌苔スコア（TCI: Tongue Coating Index）も臨床で用いられる。舌ブラシで愛護的に除去する。',
+  },
+  {
+    id: 'ohat-e-tongue-4',
+    type: 'ohat_photo',
+    difficulty: 'expert',
+    categoryId: 'tongue',
+    imageUrl: 'images/tongue/舌赤みが強い光沢やや不良.jpg',
+    prompt: '舌全体が赤く光沢を帯び、乳頭が平滑化（smooth tongue）しています。潰瘍や出血は見られません。このスコアは？',
+    options: [
+      { id: 'a', text: '0（健全）', isCorrect: false },
+      { id: 'b', text: '1（やや不良）', isCorrect: true },
+      { id: 'c', text: '2（病的）', isCorrect: false },
+    ],
+    correctAnswerIds: ['b'],
+    narrativeFeedback: {
+      correct: '正解！赤み・光沢・乳頭萎縮（smooth tongue）はスコア1の「赤み/滑沢」所見。背景として鉄欠乏性貧血・ビタミンB12欠乏・葉酸欠乏・舌炎を疑います。高齢者では低栄養のサインとして見逃せない所見です。',
+      incorrect: '赤み・光沢・乳頭平滑化（smooth tongue）はスコア1です。スコア2になるのは潰瘍・パッチ・腫脹など構造的異常がある場合。この所見は栄養性要因（Fe・B12・葉酸欠乏）が背景にあることが多く、血液検査・食事内容の確認へ繋げる観察眼が重要です。',
+    },
+    explanation:
+      '乳頭萎縮は鉄欠乏性貧血（Plummer-Vinson症候群）、ビタミンB12欠乏（Hunter舌炎）、葉酸欠乏で典型的に見られる。栄養評価が必要。',
+  },
+  {
+    id: 'ohat-e-tongue-5',
+    type: 'ohat_photo',
+    difficulty: 'expert',
+    categoryId: 'tongue',
+    imageUrl: 'images/tongue/舌潰瘍病的.jpg',
+    prompt: '舌縁に明瞭な潰瘍（陥凹性病変）が確認されます。周囲の粘膜は健常に近い状態です。このスコアは？',
+    options: [
+      { id: 'a', text: '0（健全）', isCorrect: false },
+      { id: 'b', text: '1（やや不良）', isCorrect: false },
+      { id: 'c', text: '2（病的）', isCorrect: true },
+    ],
+    correctAnswerIds: ['c'],
+    narrativeFeedback: {
+      correct: '正解です！潰瘍は明確な病的所見でスコア2。2週間以上治癒しない舌縁の潰瘍は**舌癌**を疑って歯科口腔外科への紹介が必要です。舌癌の80%以上は舌縁に発生します（Bagan 2010）。「単なる口内炎」と放置しないことが命を救います。',
+      incorrect: '舌縁の潰瘍はスコア2（病的）です。特に**2週間以上治癒しない潰瘍は舌癌を疑う**のが鉄則。舌癌の80%以上が舌縁部に発生し、早期発見が予後を大きく左右します。口内炎との鑑別は歯科・口腔外科に委ねる判断が正しい行動です。',
+    },
+    explanation:
+      '舌癌の80%以上は舌縁に発生（Bagan 2010）。2週間以上治癒しない潰瘍は「red flag」として歯科口腔外科紹介。痛みが軽度でも油断しない。',
+  },
+  {
+    id: 'ohat-e-tongue-6',
+    type: 'ohat_photo',
+    difficulty: 'expert',
+    categoryId: 'tongue',
+    imageUrl: 'images/tongue/舌白色パッチ病的.jpg',
+    prompt: '舌背に境界明瞭な白色パッチが認められます。擦過しても剥離しません。このスコアは？',
+    options: [
+      { id: 'a', text: '0（健全）', isCorrect: false },
+      { id: 'b', text: '1（やや不良）', isCorrect: false },
+      { id: 'c', text: '2（病的）', isCorrect: true },
+    ],
+    correctAnswerIds: ['c'],
+    narrativeFeedback: {
+      correct: '正解！擦って剥離しない白色パッチは**白板症（leukoplakia）**の疑いが濃厚でスコア2。白板症は前癌病変とされ、5〜25%が悪性転化します（van der Waal 2009）。一方、擦過で剥離する場合はカンジダ症（偽膜性）を疑う。どちらも歯科口腔外科へ紹介が必要です。',
+      incorrect: '白色パッチはスコア2（病的）です。**擦過で剥離しなければ白板症（前癌病変）**を、擦過で剥離すれば偽膜性口腔カンジダ症を疑います。いずれも歯科口腔外科への紹介が必要。「ただの白い舌苔」と判断せず、擦過テストで鑑別する姿勢が重要です。',
+    },
+    explanation:
+      '白板症（leukoplakia）は5〜25%が悪性転化する前癌病変（van der Waal 2009）。カンジダ症との鑑別は擦過テスト（綿棒で擦って剥離するか）が簡便。',
+  },
 ]
