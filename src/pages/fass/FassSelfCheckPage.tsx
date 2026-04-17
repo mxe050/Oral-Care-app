@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Save, CheckCircle } from 'lucide-react'
+import { Save, CheckCircle, AlertTriangle, Lightbulb, BookOpen } from 'lucide-react'
 import { CORE10_ITEMS } from '../../data/core10-items'
 import { db } from '../../db/database'
 import { AnimatedScore } from '../../components/ui/AnimatedScore'
@@ -172,31 +172,83 @@ export function FassSelfCheckPage() {
         </div>
       )}
 
-      {/* Improvement suggestions */}
+      {/* Improvement suggestions — all learning content shown inline */}
       {Object.entries(scores).filter(([, s]) => s === 0).length > 0 && (
-        <div className="rounded-xl border border-red-200 bg-red-50 p-4 dark:border-red-800 dark:bg-red-950">
-          <h3 className="mb-2 text-sm font-bold text-red-700 dark:text-red-300">
-            改善が必要な項目
-          </h3>
-          <ul className="space-y-2">
-            {Object.entries(scores)
-              .filter(([, s]) => s === 0)
-              .map(([id]) => {
-                const item = CORE10_ITEMS.find((i) => i.id === Number(id))
-                return (
-                  <li key={id}>
+        <div className="space-y-3">
+          <div className="flex items-center gap-2">
+            <AlertTriangle size={18} className="text-red-500" />
+            <h3 className="text-sm font-bold text-red-700 dark:text-red-300">
+              改善が必要な項目（{Object.entries(scores).filter(([, s]) => s === 0).length}件）
+            </h3>
+          </div>
+          {Object.entries(scores)
+            .filter(([, s]) => s === 0)
+            .map(([id]) => {
+              const item = CORE10_ITEMS.find((i) => i.id === Number(id))
+              if (!item) return null
+              return (
+                <div
+                  key={id}
+                  className="overflow-hidden rounded-xl border border-red-200 bg-gradient-to-br from-red-50 to-orange-50 dark:border-red-800 dark:from-red-950 dark:to-orange-950"
+                >
+                  <div className="space-y-3 p-4">
+                    <div className="flex items-center gap-2">
+                      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-red-500 text-xs font-bold text-white">
+                        {item.id}
+                      </span>
+                      <h4 className="text-sm font-bold text-gray-900 dark:text-gray-100">
+                        {item.title}
+                      </h4>
+                    </div>
+
+                    <div className="rounded-lg bg-white p-3 text-xs text-gray-700 shadow-sm dark:bg-gray-900 dark:text-gray-300">
+                      <div className="mb-1 font-bold text-gray-500 dark:text-gray-400">
+                        ポイント
+                      </div>
+                      {item.description}
+                    </div>
+
+                    <div className="rounded-lg bg-white p-3 text-xs text-gray-700 shadow-sm dark:bg-gray-900 dark:text-gray-300">
+                      <div className="mb-1 font-bold text-gray-500 dark:text-gray-400">
+                        医学的根拠
+                      </div>
+                      {item.medicalRationale}
+                    </div>
+
+                    {item.specificCriteria && (
+                      <div className="rounded-lg bg-white p-3 text-xs text-gray-700 shadow-sm dark:bg-gray-900 dark:text-gray-300">
+                        <div className="mb-1 font-bold text-gray-500 dark:text-gray-400">
+                          具体的な観察ポイント
+                        </div>
+                        {item.specificCriteria}
+                      </div>
+                    )}
+
+                    <div className="flex gap-2 rounded-lg bg-red-100 p-3 dark:bg-red-900/50">
+                      <AlertTriangle size={14} className="mt-0.5 shrink-0 text-red-600 dark:text-red-400" />
+                      <p className="text-xs text-red-800 dark:text-red-200">
+                        {item.errorConsequence}
+                      </p>
+                    </div>
+
+                    <div className="flex gap-2 rounded-lg bg-amber-50 p-3 dark:bg-amber-950/60">
+                      <Lightbulb size={14} className="mt-0.5 shrink-0 text-amber-500" />
+                      <p className="text-xs italic text-amber-800 dark:text-amber-300">
+                        {item.funFact}
+                      </p>
+                    </div>
+
                     <Link
                       to={`/fass/learn/${id}`}
-                      className="flex items-center gap-2 text-xs text-red-700 hover:underline dark:text-red-300"
+                      className="flex items-center justify-center gap-1.5 rounded-lg bg-teal-600 py-2 text-xs font-bold text-white transition-colors hover:bg-teal-700"
                     >
-                      <span className="font-bold">項目{id}:</span>
-                      <span>{item?.title}</span>
-                      <span className="ml-auto text-teal-600 dark:text-teal-400">学ぶ →</span>
+                      <BookOpen size={14} />
+                      詳細ページで深く学ぶ
                     </Link>
-                  </li>
-                )
-              })}
-          </ul>
+                  </div>
+                </div>
+              )
+            })}
         </div>
       )}
 

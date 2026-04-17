@@ -2,6 +2,13 @@ import { Link } from 'react-router-dom'
 import { BookOpen, Search, Video, BarChart3, Trophy, Star } from 'lucide-react'
 import { useProgressStore } from '../../stores/progress-store'
 import { BADGES } from '../../types/common'
+import { VideoLinkList, type VideoLink } from '../../components/ui/VideoLinkList'
+
+const core10Videos: VideoLink[] = [
+  { label: 'Core10とは', url: 'https://www.youtube.com/watch?v=avR3CxZt_D8' },
+  { label: 'Core10解説', url: 'https://www.youtube.com/watch?v=X7P_rAsfgT8' },
+  { label: '学習ガイド', url: 'https://mxe050.github.io/meal-care/', kind: 'web' },
+]
 
 const sections = [
   {
@@ -111,6 +118,9 @@ export function FassHubPage() {
           )
         })}
       </div>
+
+      {/* Video learning links */}
+      <VideoLinkList links={core10Videos} accent="amber" />
 
       {fassBadges.length > 0 && (
         <div className="rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-900">

@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Smile, Brain, Utensils, BookOpen, Trophy, Sparkles, ChevronDown } from 'lucide-react'
+import { Smile, Brain, Utensils, BookOpen, Trophy, Sparkles, ChevronDown, Droplets } from 'lucide-react'
 import { useProgressStore } from '../stores/progress-store'
 import { XpDisplay } from '../components/ui/XpDisplay'
 import { StreakDisplay } from '../components/ui/StreakDisplay'
@@ -17,6 +17,15 @@ const modules = [
     description: '8カテゴリの口腔アセスメントを学ぶ',
     gradient: 'from-teal-400 to-teal-600',
     progressKey: 'ohat',
+  },
+  {
+    to: '/oral-care',
+    icon: Droplets,
+    title: '口腔のケア',
+    subtitle: 'ケアの手順を実践で学ぶ',
+    description: '手技・注意点をインタラクティブに',
+    gradient: 'from-cyan-400 to-cyan-600',
+    progressKey: 'oral-care',
   },
   {
     to: '/swallow',

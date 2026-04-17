@@ -1,9 +1,10 @@
 import { NavLink } from 'react-router-dom'
-import { Home, Smile, Brain, Utensils } from 'lucide-react'
+import { Home, Smile, Droplets, Brain, Utensils } from 'lucide-react'
 
 const navItems = [
   { to: '/', icon: Home, label: 'ホーム' },
   { to: '/ohat', icon: Smile, label: 'OHAT' },
+  { to: '/oral-care', icon: Droplets, label: '口腔ケア' },
   { to: '/swallow', icon: Brain, label: '嚥下' },
   { to: '/fass', icon: Utensils, label: 'CORE10' },
 ]

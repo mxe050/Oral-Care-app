@@ -16,6 +16,7 @@ import { FassItemDetailPage } from './pages/fass/FassItemDetailPage'
 import { FassMistakeQuizPage } from './pages/fass/FassMistakeQuizPage'
 import { FassSelfCheckPage } from './pages/fass/FassSelfCheckPage'
 import { FassEvidencePage } from './pages/fass/FassEvidencePage'
+import { OralCareHubPage } from './pages/oral-care/OralCareHubPage'
 import { SwallowHubPage } from './pages/swallow/SwallowHubPage'
 import { SwallowPhasePage } from './pages/swallow/SwallowPhasePage'
 import { SwallowQuizPage } from './pages/swallow/SwallowQuizPage'
@@ -44,6 +45,8 @@ createRoot(document.getElementById('root')!).render(
           <Route path="fass/mistake-quiz" element={<FassMistakeQuizPage />} />
           <Route path="fass/self-check" element={<FassSelfCheckPage />} />
           <Route path="fass/evidence" element={<FassEvidencePage />} />
+          {/* Oral Care Module */}
+          <Route path="oral-care" element={<OralCareHubPage />} />
           {/* Swallowing Module */}
           <Route path="swallow" element={<SwallowHubPage />} />
           <Route path="swallow/phases" element={<SwallowPhasePage />} />

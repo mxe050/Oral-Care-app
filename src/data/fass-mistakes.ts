@@ -30,14 +30,16 @@ export const MISTAKE_SCENARIOS: MistakeScenario[] = [
         explanation: '足底未接地は骨盤不安定→体幹動揺→頸部代償筋緊張→嚥下障害の連鎖を引き起こします。足底にはメカノレセプターが密集しており、接地情報が即座に姿勢制御にフィードバックされます。',
         relatedCore10Items: [2],
       },
+      {
+        id: 'ms-1-m4',
+        category: 'environment',
+        region: { x: 5, y: 5, width: 30, height: 15 },
+        description: '食前に口腔ケアを済ませている',
+        explanation: '正しい行動とは言えません。確かに細菌量は減りますが、基本的に食後が一般的です。食前は唾液分泌促進のための軽い刺激（口腔体操・冷水含嗽など）に留め、丁寧なブラッシングは食後に行いましょう。',
+        relatedCore10Items: [4],
+      },
     ],
     correctBehaviors: [
-      {
-        id: 'ms-1-c1',
-        category: 'environment',
-        description: '食前に口腔ケアを済ませている',
-        explanation: '正しい行動です。食前の口腔ケアは細菌量を減らし、誤嚥性肺炎リスクを低減します。Yoneyama et al.（2002）の研究では専門的口腔ケアで肺炎発症率が約40%減少しました。',
-      },
       {
         id: 'ms-1-c2',
         category: 'environment',
@@ -134,7 +136,7 @@ export const MISTAKE_SCENARIOS: MistakeScenario[] = [
         id: 'ms-3-c1',
         category: 'timing',
         description: '一口ごとに嚥下を確認してから次の食物を運んでいる',
-        explanation: '正しい行動です。高齢者では嚥下1回に2〜3秒要します。嚥下完了を確認してから次の一口を運ぶのが「急がば回れ」の原則です。',
+        explanation: '正しい行動です。高齢者では嚥下1回に2〜3秒要します。嚥下完了を確認してから次の一口を運ぶのが「急がば回れ」の原則です。ただし、タイミングよく食事を行うため、次の用意を行っておくこと。',
       },
       {
         id: 'ms-3-c2',

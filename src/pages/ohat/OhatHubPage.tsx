@@ -2,6 +2,15 @@ import { Link } from 'react-router-dom'
 import { BookOpen, HelpCircle, ClipboardList, Users, Trophy, Star } from 'lucide-react'
 import { useProgressStore } from '../../stores/progress-store'
 import { BADGES } from '../../types/common'
+import { VideoLinkList } from '../../components/ui/VideoLinkList'
+
+const ohatVideos = [
+  { label: 'OHAT導入の意味', url: 'https://www.youtube.com/watch?v=xos9DBK-67M' },
+  { label: '松尾先生解説', url: 'https://www.youtube.com/watch?v=Un7R1UjkCD0' },
+  { label: '瀧内先生解説', url: 'https://www.youtube.com/watch?v=y0jRuWpuDZI' },
+  { label: 'OHAT海外の動画', url: 'https://www.youtube.com/watch?v=rqrnP_K5Drw' },
+  { label: 'シンガポール口腔のケア', url: 'https://www.youtube.com/watch?v=sMKNjIMsxy4' },
+] as const
 
 const sections = [
   {
@@ -113,6 +122,9 @@ export function OhatHubPage() {
           )
         })}
       </div>
+
+      {/* Video learning links */}
+      <VideoLinkList links={[...ohatVideos]} accent="teal" />
 
       {/* Earned badges for this module */}
       {ohatBadges.length > 0 && (
