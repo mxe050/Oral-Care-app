@@ -1,10 +1,5 @@
 import { Link } from 'react-router-dom'
 import { Droplets, AlertCircle, Check, Info, ArrowRight } from 'lucide-react'
-import { VideoLinkList, type VideoLink } from '../../components/ui/VideoLinkList'
-
-const oralCareVideos: VideoLink[] = [
-  { label: 'シンガポール口腔のケア', url: 'https://www.youtube.com/watch?v=sMKNjIMsxy4' },
-]
 
 export function OralCareHubPage() {
   return (
@@ -113,9 +108,6 @@ export function OralCareHubPage() {
         学習を始める（全30問）
         <ArrowRight size={22} />
       </Link>
-
-      {/* Video */}
-      <VideoLinkList links={oralCareVideos} accent="blue" />
     </div>
   )
 }

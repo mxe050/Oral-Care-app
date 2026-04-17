@@ -9,7 +9,6 @@ const ohatVideos = [
   { label: '松尾先生解説', url: 'https://www.youtube.com/watch?v=Un7R1UjkCD0' },
   { label: '瀧内先生解説', url: 'https://www.youtube.com/watch?v=y0jRuWpuDZI' },
   { label: 'OHAT海外の動画', url: 'https://www.youtube.com/watch?v=rqrnP_K5Drw' },
-  { label: 'シンガポール口腔のケア', url: 'https://www.youtube.com/watch?v=sMKNjIMsxy4' },
 ] as const
 
 const sections = [
@@ -32,8 +31,8 @@ const sections = [
   {
     to: '/ohat/clinical',
     icon: ClipboardList,
-    title: '臨床記録',
-    description: 'OHAT-J評価フォームで記録・スコア推移を確認',
+    title: 'バーチャル症例評価',
+    description: '実症例の所見を読み、あなたの判定と専門家の判定を比べて学ぶ',
     gradient: 'from-purple-400 to-purple-600',
     sectionKey: 'ohat-clinical',
   },

@@ -30,8 +30,8 @@ const sections = [
   {
     to: '/fass/self-check',
     icon: Video,
-    title: 'セルフチェック',
-    description: 'CORE10チェックリストで自分の介助スキルを評価',
+    title: 'バーチャル介助評価',
+    description: '他者の介助場面をCORE10で判定し、専門家と見比べて学ぶ',
     gradient: 'from-green-400 to-green-600',
     sectionKey: 'fass-self-check',
   },

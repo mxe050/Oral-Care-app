@@ -16,8 +16,8 @@ const sections = [
   {
     to: '/swallow/meal-round',
     icon: Eye,
-    title: '食事ラウンド',
-    description: 'OODAループで食事観察を実践',
+    title: '食事ラウンド：考えるOODA',
+    description: '観察結果から状況判断→意思決定→実行を自分で考える',
     gradient: 'from-blue-400 to-blue-600',
     emoji: '\uD83D\uDC41\uFE0F',
     sectionKey: 'swallow-meal-round',
