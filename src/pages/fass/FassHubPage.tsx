@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { BookOpen, Search, Video, BarChart3, Trophy, Star } from 'lucide-react'
+import { BookOpen, Search, Video, BarChart3, Trophy, Star, Globe, ExternalLink } from 'lucide-react'
 import { useProgressStore } from '../../stores/progress-store'
 import { BADGES } from '../../types/common'
 import { VideoLinkList, type VideoLink } from '../../components/ui/VideoLinkList'
@@ -7,8 +7,9 @@ import { VideoLinkList, type VideoLink } from '../../components/ui/VideoLinkList
 const core10Videos: VideoLink[] = [
   { label: 'Core10とは', url: 'https://www.youtube.com/watch?v=avR3CxZt_D8' },
   { label: 'Core10解説', url: 'https://www.youtube.com/watch?v=X7P_rAsfgT8' },
-  { label: '学習ガイド', url: 'https://mxe050.github.io/meal-care/', kind: 'web' },
 ]
+
+const externalLearningSiteUrl = 'https://mxe050.github.io/meal-care/'
 
 const sections = [
   {
@@ -118,6 +119,27 @@ export function FassHubPage() {
           )
         })}
       </div>
+
+      {/* 独立ボタン: 動画学習サイト（エビデンスの下） */}
+      <a
+        href={externalLearningSiteUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center gap-4 rounded-xl border-2 border-amber-300 bg-gradient-to-br from-amber-50 to-orange-50 p-4 transition-all hover:border-amber-500 hover:shadow-md active:scale-[0.98] dark:border-amber-700 dark:from-amber-950 dark:to-orange-950 dark:hover:border-amber-500"
+      >
+        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-amber-400 to-orange-500 text-white shadow-sm">
+          <Globe size={20} />
+        </div>
+        <div className="flex-1">
+          <div className="flex items-center gap-2">
+            <h3 className="font-bold text-gray-900 dark:text-gray-100">動画学習サイト</h3>
+            <ExternalLink size={12} className="text-gray-400" />
+          </div>
+          <p className="text-xs text-gray-500 dark:text-gray-400">
+            CORE10 関連の動画・資料をまとめた外部サイトで学ぶ
+          </p>
+        </div>
+      </a>
 
       {/* Video learning links */}
       <VideoLinkList links={core10Videos} accent="amber" />

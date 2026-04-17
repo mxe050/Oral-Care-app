@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Smile, Brain, Utensils, BookOpen, Trophy, Sparkles, ChevronDown, Droplets } from 'lucide-react'
+import { Smile, Brain, Utensils, BookOpen, Trophy, Sparkles, ChevronDown, Droplets, AlertTriangle } from 'lucide-react'
 import { useProgressStore } from '../stores/progress-store'
 import { XpDisplay } from '../components/ui/XpDisplay'
 import { StreakDisplay } from '../components/ui/StreakDisplay'
@@ -81,6 +81,20 @@ export function HomePage() {
 
   return (
     <div className="mx-auto max-w-lg space-y-6">
+      {/* 注意書き（免責） */}
+      <div className="rounded-xl border border-amber-300 bg-amber-50 p-4 dark:border-amber-700 dark:bg-amber-950">
+        <div className="flex gap-3">
+          <AlertTriangle size={18} className="mt-0.5 shrink-0 text-amber-600 dark:text-amber-400" />
+          <div className="flex-1 text-xs leading-relaxed text-amber-900 dark:text-amber-100">
+            <p className="font-bold">本アプリは学習補助ツールです</p>
+            <p className="mt-1">
+              内容に間違いが含まれている可能性があります。
+              教育使用の前に、必ず責任者が内容を確認してください。
+            </p>
+          </div>
+        </div>
+      </div>
+
       {/* XP & Streak */}
       <XpDisplay />
       <StreakDisplay />
