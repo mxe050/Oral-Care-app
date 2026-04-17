@@ -32,11 +32,19 @@ export interface MistakeZone {
   relatedCore10Items: Core10ItemId[]
 }
 
+export interface CorrectBehavior {
+  id: string
+  category: MistakeCategory
+  description: string
+  explanation: string
+}
+
 export interface MistakeScenario {
   id: string
   title: string
   description: string
   mistakes: MistakeZone[]
+  correctBehaviors: CorrectBehavior[]
 }
 
 export interface Core10Evaluation {

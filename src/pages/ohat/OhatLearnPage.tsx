@@ -104,7 +104,7 @@ export function OhatLearnPage() {
                       <CheckCircle size={16} className="text-green-500" />
                     )}
                   </div>
-                  <p className="mt-0.5 line-clamp-1 text-xs text-gray-500 dark:text-gray-400">
+                  <p className="mt-0.5 text-xs text-gray-500 dark:text-gray-400">
                     {cat.funFact}
                   </p>
                 </div>

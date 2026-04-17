@@ -4,7 +4,7 @@ export const OHAT_CATEGORIES: OhatCategory[] = [
   {
     id: 'lips',
     name: '口唇',
-    icon: 'Smile',
+    icon: 'Lips',
     scoreCriteria: {
       0: {
         label: '健全',
@@ -46,7 +46,7 @@ export const OHAT_CATEGORIES: OhatCategory[] = [
   {
     id: 'tongue',
     name: '舌',
-    icon: 'Zap',
+    icon: 'Tongue',
     scoreCriteria: {
       0: {
         label: '健全',
@@ -88,7 +88,7 @@ export const OHAT_CATEGORIES: OhatCategory[] = [
   {
     id: 'gums_mucosa',
     name: '歯肉・粘膜',
-    icon: 'Heart',
+    icon: 'Gums and tissues',
     scoreCriteria: {
       0: {
         label: '健全',
@@ -130,7 +130,7 @@ export const OHAT_CATEGORIES: OhatCategory[] = [
   {
     id: 'saliva',
     name: '唾液',
-    icon: 'Droplets',
+    icon: 'Saliva',
     scoreCriteria: {
       0: {
         label: '健全',
@@ -192,7 +192,7 @@ export const OHAT_CATEGORIES: OhatCategory[] = [
   {
     id: 'natural_teeth',
     name: '残存歯',
-    icon: 'Gem',
+    icon: 'Natural teeth',
     scoreCriteria: {
       0: {
         label: '健全',
@@ -234,7 +234,7 @@ export const OHAT_CATEGORIES: OhatCategory[] = [
   {
     id: 'dentures',
     name: '義歯',
-    icon: 'CircleDot',
+    icon: 'Dentures',
     scoreCriteria: {
       0: {
         label: '健全',
@@ -275,7 +275,7 @@ export const OHAT_CATEGORIES: OhatCategory[] = [
   {
     id: 'oral_cleanliness',
     name: '口腔清掃',
-    icon: 'Sparkles',
+    icon: 'Oral cleanliness',
     scoreCriteria: {
       0: {
         label: '健全',
@@ -317,7 +317,7 @@ export const OHAT_CATEGORIES: OhatCategory[] = [
   {
     id: 'dental_pain',
     name: '歯痛',
-    icon: 'AlertTriangle',
+    icon: 'Dental pain',
     scoreCriteria: {
       0: {
         label: '健全',

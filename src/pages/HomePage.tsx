@@ -1,11 +1,12 @@
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Smile, Brain, Utensils, BookOpen, Trophy, Sparkles } from 'lucide-react'
+import { Smile, Brain, Utensils, BookOpen, Trophy, Sparkles, ChevronDown } from 'lucide-react'
 import { useProgressStore } from '../stores/progress-store'
 import { XpDisplay } from '../components/ui/XpDisplay'
 import { StreakDisplay } from '../components/ui/StreakDisplay'
+import { QuizFeedback } from '../components/ui/QuizFeedback'
 import { OHAT_QUIZ_ITEMS } from '../data/ohat-quiz-items'
-import { BADGES } from '../types/common'
+import { BADGES, XP_ACTIONS } from '../types/common'
 
 const modules = [
   {
@@ -41,6 +42,7 @@ export function HomePage() {
   const getCompletionRate = useProgressStore((s) => s.getCompletionRate)
   const badges = useProgressStore((s) => s.badges)
   const checkStreak = useProgressStore((s) => s.checkStreak)
+  const addXp = useProgressStore((s) => s.addXp)
 
   // Check streak on home load
   useMemo(() => {
@@ -54,30 +56,94 @@ export function HomePage() {
     return OHAT_QUIZ_ITEMS[seed % OHAT_QUIZ_ITEMS.length]
   }, [])
 
+  const [challengeOpen, setChallengeOpen] = useState(false)
+  const [challengeSelectedId, setChallengeSelectedId] = useState<string | null>(null)
+  const challengeAnswered = challengeSelectedId !== null
+  const challengeIsCorrect = challengeAnswered && dailyChallenge
+    ? dailyChallenge.correctAnswerIds.includes(challengeSelectedId!)
+    : false
+
+  const handleChallengeSelect = (optionId: string) => {
+    if (challengeAnswered || !dailyChallenge) return
+    setChallengeSelectedId(optionId)
+    const isCorrect = dailyChallenge.correctAnswerIds.includes(optionId)
+    if (isCorrect) addXp(XP_ACTIONS.quizCorrect)
+  }
+
   return (
     <div className="mx-auto max-w-lg space-y-6">
       {/* XP & Streak */}
       <XpDisplay />
       <StreakDisplay />
 
-      {/* Daily Challenge */}
-      <Link
-        to="/ohat/quiz"
-        className="block rounded-2xl bg-gradient-to-r from-teal-500 to-teal-700 p-5 text-white shadow-lg transition-all hover:shadow-xl active:scale-[0.98]"
-      >
-        <div className="mb-2 flex items-center gap-2">
-          <Sparkles size={18} />
-          <span className="text-sm font-bold uppercase tracking-wider opacity-90">
-            今日のチャレンジ
-          </span>
-        </div>
-        <p className="text-sm leading-relaxed opacity-95">
-          {dailyChallenge?.prompt ?? 'クイズに挑戦して知識を試そう!'}
-        </p>
-        <div className="mt-3 inline-block rounded-full bg-white/20 px-4 py-1.5 text-xs font-bold backdrop-blur">
-          挑戦する →
-        </div>
-      </Link>
+      {/* Daily Challenge - inline answerable */}
+      <div className="overflow-hidden rounded-2xl bg-gradient-to-r from-teal-500 to-teal-700 text-white shadow-lg">
+        <button
+          type="button"
+          onClick={() => setChallengeOpen((v) => !v)}
+          className="block w-full p-5 text-left transition-all hover:shadow-xl active:scale-[0.99]"
+        >
+          <div className="mb-2 flex items-center gap-2">
+            <Sparkles size={18} />
+            <span className="text-sm font-bold uppercase tracking-wider opacity-90">
+              今日のチャレンジ
+            </span>
+            <ChevronDown
+              size={18}
+              className={`ml-auto transition-transform duration-300 ${challengeOpen ? 'rotate-180' : ''}`}
+            />
+          </div>
+          <p className="text-sm leading-relaxed opacity-95">
+            {dailyChallenge?.prompt ?? 'クイズに挑戦して知識を試そう!'}
+          </p>
+          {!challengeOpen && (
+            <div className="mt-3 inline-block rounded-full bg-white/20 px-4 py-1.5 text-xs font-bold backdrop-blur">
+              挑戦する →
+            </div>
+          )}
+        </button>
+
+        {challengeOpen && dailyChallenge && (
+          <div className="space-y-3 bg-white/10 p-5 backdrop-blur">
+            {dailyChallenge.options.map((opt) => {
+              let style = 'border-white/40 bg-white/20 hover:bg-white/30'
+              if (challengeAnswered) {
+                if (opt.isCorrect)
+                  style = 'border-green-300 bg-green-500/30 ring-2 ring-green-300'
+                else if (opt.id === challengeSelectedId)
+                  style = 'border-red-300 bg-red-500/30'
+                else style = 'border-white/20 bg-white/10 opacity-60'
+              } else if (opt.id === challengeSelectedId) {
+                style = 'border-white bg-white/30'
+              }
+              return (
+                <button
+                  key={opt.id}
+                  type="button"
+                  onClick={() => handleChallengeSelect(opt.id)}
+                  disabled={challengeAnswered}
+                  className={`w-full rounded-xl border-2 p-3 text-left text-sm font-medium text-white transition-all ${style}`}
+                >
+                  {opt.text}
+                </button>
+              )
+            })}
+
+            {challengeAnswered && (
+              <div className="rounded-xl bg-white/95 p-1 text-gray-900">
+                <QuizFeedback
+                  correct={challengeIsCorrect}
+                  explanation={
+                    challengeIsCorrect
+                      ? dailyChallenge.narrativeFeedback.correct
+                      : `${dailyChallenge.narrativeFeedback.incorrect}\n\n${dailyChallenge.explanation}`
+                  }
+                />
+              </div>
+            )}
+          </div>
+        )}
+      </div>
 
       {/* Module Cards */}
       <div className="space-y-4">

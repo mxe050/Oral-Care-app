@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Eye, Compass, CheckSquare, Play, ChevronRight, ArrowRight } from 'lucide-react'
+import { Eye, Compass, CheckSquare, Play, ArrowRight, ChevronDown } from 'lucide-react'
 import { MEAL_ROUND_SCENARIOS } from '../../data/swallowing-knowledge'
 import { ReferenceList } from '../../components/ui/ReferenceList'
 import { useProgressStore } from '../../stores/progress-store'
@@ -14,14 +14,16 @@ const oodaConfig = {
 
 export function MealRoundPage() {
   const [scenarioIndex, setScenarioIndex] = useState(0)
-  const [revealedSteps, setRevealedSteps] = useState<number>(0)
-  const [showResult, setShowResult] = useState(false)
+  // openedSteps: number of steps whose details have been revealed via click.
+  // The "active" (clickable, normal color) step is openedSteps itself.
+  const [openedSteps, setOpenedSteps] = useState<number>(0)
 
   const markCompleted = useProgressStore((s) => s.markCompleted)
   const addXp = useProgressStore((s) => s.addXp)
 
   const scenario = MEAL_ROUND_SCENARIOS[scenarioIndex]
   const isFinished = scenarioIndex >= MEAL_ROUND_SCENARIOS.length
+  const showResult = scenario ? openedSteps >= scenario.ooda.length : false
 
   if (isFinished) {
     markCompleted('swallow-meal-round')
@@ -39,8 +41,7 @@ export function MealRoundPage() {
         <button
           onClick={() => {
             setScenarioIndex(0)
-            setRevealedSteps(0)
-            setShowResult(false)
+            setOpenedSteps(0)
           }}
           className="w-full rounded-xl bg-purple-600 py-3 font-bold text-white transition-all hover:bg-purple-700"
         >
@@ -52,20 +53,15 @@ export function MealRoundPage() {
 
   if (!scenario) return null
 
-  const handleRevealNext = () => {
-    if (revealedSteps < scenario.ooda.length) {
-      setRevealedSteps((s) => s + 1)
-      addXp(5) // small XP for each step
-    }
-    if (revealedSteps >= scenario.ooda.length - 1) {
-      setShowResult(true)
-    }
+  const handleStepClick = (i: number) => {
+    if (i !== openedSteps) return
+    setOpenedSteps((s) => s + 1)
+    addXp(5)
   }
 
   const handleNextScenario = () => {
     setScenarioIndex((i) => i + 1)
-    setRevealedSteps(0)
-    setShowResult(false)
+    setOpenedSteps(0)
     addXp(XP_ACTIONS.viewLesson)
   }
 
@@ -87,12 +83,13 @@ export function MealRoundPage() {
       <div className="flex items-center justify-center gap-2 py-2">
         {(['observe', 'orient', 'decide', 'act'] as const).map((step, i) => {
           const config = oodaConfig[step]
-          const isRevealed = i < revealedSteps
+          // Active (normal color) when it's opened OR it's the next clickable step.
+          const isActive = i <= openedSteps
           return (
             <div key={step} className="flex items-center gap-2">
               <div
                 className={`flex h-12 w-12 items-center justify-center rounded-full transition-all duration-500 ${
-                  isRevealed
+                  isActive
                     ? `bg-gradient-to-br ${config.color} text-white shadow-md scale-110`
                     : 'bg-gray-200 text-gray-400 dark:bg-gray-700'
                 }`}
@@ -102,7 +99,7 @@ export function MealRoundPage() {
               {i < 3 && (
                 <ArrowRight
                   size={14}
-                  className={`${isRevealed ? 'text-gray-500' : 'text-gray-300 dark:text-gray-600'}`}
+                  className={`${isActive ? 'text-gray-500' : 'text-gray-300 dark:text-gray-600'}`}
                 />
               )}
             </div>
@@ -132,25 +129,37 @@ export function MealRoundPage() {
       <div className="space-y-3">
         {scenario.ooda.map((step, i) => {
           const config = oodaConfig[step.step]
-          const isRevealed = i < revealedSteps
+          const isOpen = i < openedSteps
+          const isActive = i === openedSteps
+          // Active (clickable, normal color) includes both already-opened and the next step.
+          const isNormalColor = isOpen || isActive
 
           return (
-            <div
+            <button
               key={step.step}
-              className={`overflow-hidden rounded-xl border transition-all duration-500 ${
-                isRevealed
+              type="button"
+              onClick={() => handleStepClick(i)}
+              disabled={!isActive}
+              className={`block w-full overflow-hidden rounded-xl border text-left transition-all duration-500 ${
+                isNormalColor
                   ? `${config.bg} opacity-100 translate-y-0`
                   : 'border-gray-200 bg-gray-50 opacity-40 dark:border-gray-700 dark:bg-gray-800'
-              }`}
+              } ${isActive ? 'cursor-pointer ring-2 ring-purple-400 dark:ring-purple-500' : isOpen ? '' : 'cursor-not-allowed'}`}
             >
               <div className="p-4">
                 <div className="mb-2 flex items-center gap-2">
-                  <config.icon size={16} className={isRevealed ? config.text : 'text-gray-400'} />
-                  <span className={`text-sm font-bold ${isRevealed ? config.text : 'text-gray-400'}`}>
+                  <config.icon size={16} className={isNormalColor ? config.text : 'text-gray-400'} />
+                  <span className={`text-sm font-bold ${isNormalColor ? config.text : 'text-gray-400'}`}>
                     {config.label}
                   </span>
+                  {isActive && (
+                    <ChevronDown
+                      size={16}
+                      className={`ml-auto ${config.text} animate-bounce`}
+                    />
+                  )}
                 </div>
-                {isRevealed ? (
+                {isOpen ? (
                   <div>
                     <p className="mb-2 text-xs text-gray-700 dark:text-gray-300">
                       {step.description}
@@ -164,26 +173,23 @@ export function MealRoundPage() {
                       ))}
                     </ul>
                   </div>
+                ) : isActive ? (
+                  <p className={`text-xs font-medium ${config.text}`}>
+                    タップして解説を表示
+                  </p>
                 ) : (
                   <p className="text-xs text-gray-400">
-                    ステップを進めると表示されます
+                    前のステップをタップすると開放されます
                   </p>
                 )}
               </div>
-            </div>
+            </button>
           )
         })}
       </div>
 
-      {/* Reveal / Next button */}
-      {!showResult ? (
-        <button
-          onClick={handleRevealNext}
-          className="flex w-full items-center justify-center gap-2 rounded-xl bg-purple-600 py-3 font-bold text-white transition-all hover:bg-purple-700 active:scale-[0.98]"
-        >
-          次のステップへ <ChevronRight size={16} />
-        </button>
-      ) : (
+      {/* Result shown after all steps opened */}
+      {showResult && (
         <div className="space-y-4">
           {/* Correct actions */}
           <div className="rounded-xl border border-green-200 bg-green-50 p-4 dark:border-green-800 dark:bg-green-950">

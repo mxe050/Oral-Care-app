@@ -31,6 +31,20 @@ export const MISTAKE_SCENARIOS: MistakeScenario[] = [
         relatedCore10Items: [2],
       },
     ],
+    correctBehaviors: [
+      {
+        id: 'ms-1-c1',
+        category: 'environment',
+        description: '食前に口腔ケアを済ませている',
+        explanation: '正しい行動です。食前の口腔ケアは細菌量を減らし、誤嚥性肺炎リスクを低減します。Yoneyama et al.（2002）の研究では専門的口腔ケアで肺炎発症率が約40%減少しました。',
+      },
+      {
+        id: 'ms-1-c2',
+        category: 'environment',
+        description: 'テーブルの高さがおへそと腋の中間に調整されている',
+        explanation: '正しい行動です。テーブル高さはおへそと腋の中間が適正で、肩が上がらず自然に食器へ手が届く姿勢が保てます。',
+      },
+    ],
   },
   {
     id: 'ms-2',
@@ -60,6 +74,20 @@ export const MISTAKE_SCENARIOS: MistakeScenario[] = [
         description: 'スプーンをまっすぐ引き抜いている',
         explanation: '上唇でこすり取らせずに引き抜くと、食物がスプーン上に残り口腔外にこぼれます。赤ちゃんの離乳食介助と同じ原理で、上唇で取り込む動作が「食べる」の基本形です。',
         relatedCore10Items: [8],
+      },
+    ],
+    correctBehaviors: [
+      {
+        id: 'ms-2-c1',
+        category: 'technique',
+        description: 'スプーンに乗せる一口量がティースプーン1杯（約3〜5ml）程度',
+        explanation: '正しい行動です。一口量3〜5mlは咽頭処理能力に見合った安全な量。「少量頻回」が誤嚥防止の原則です。',
+      },
+      {
+        id: 'ms-2-c2',
+        category: 'technique',
+        description: '食事のすくう動作が被介助者に見えている',
+        explanation: '正しい行動です。視覚的に食事をすくう動作を見せることで、先行期の認知プロセスが働き、嚥下準備反射が惹起されます。CORE10項目5にも該当します。',
       },
     ],
   },
@@ -101,6 +129,20 @@ export const MISTAKE_SCENARIOS: MistakeScenario[] = [
         relatedCore10Items: [5, 9],
       },
     ],
+    correctBehaviors: [
+      {
+        id: 'ms-3-c1',
+        category: 'timing',
+        description: '一口ごとに嚥下を確認してから次の食物を運んでいる',
+        explanation: '正しい行動です。高齢者では嚥下1回に2〜3秒要します。嚥下完了を確認してから次の一口を運ぶのが「急がば回れ」の原則です。',
+      },
+      {
+        id: 'ms-3-c2',
+        category: 'technique',
+        description: '途中で水分と固形物の交互嚥下を促している',
+        explanation: '正しい行動です。交互嚥下は咽頭残留の洗い流し効果があり、誤嚥防止に有効です。特に高齢者や嚥下障害患者で推奨されます。',
+      },
+    ],
   },
   {
     id: 'ms-4',
@@ -130,6 +172,20 @@ export const MISTAKE_SCENARIOS: MistakeScenario[] = [
         description: '一口量が多すぎる（大さじ山盛り）',
         explanation: '適切な一口量はティースプーン1杯（約3〜5ml）が目安です。一口量が多すぎると咽頭に食塊が溢れ、嚥下処理が追いつかず誤嚥のリスクが高まります。「少量頻回」が安全な介助の原則です。',
         relatedCore10Items: [10],
+      },
+    ],
+    correctBehaviors: [
+      {
+        id: 'ms-4-c1',
+        category: 'posture',
+        description: '頭頸部がやや前屈位に保たれている',
+        explanation: '正しい行動です。chin-down（顎引き）姿勢は喉頭蓋が閉鎖しやすくなり、誤嚥リスクを約50%低減（Shanahan 1993）。CORE10項目3に該当する基本姿勢です。',
+      },
+      {
+        id: 'ms-4-c2',
+        category: 'technique',
+        description: '「今日はお味噌汁ですよ」と食事内容を伝えてから口に運んでいる',
+        explanation: '正しい行動です。食事内容を伝えることで先行期の認知プロセスが起動し、唾液分泌・嚥下準備反射が活性化します。認知症患者では特に重要です。',
       },
     ],
   },
@@ -169,6 +225,20 @@ export const MISTAKE_SCENARIOS: MistakeScenario[] = [
         description: '食事の内容を説明せずに口に運んでいる',
         explanation: '「何を食べているか」を伝えないと先行期の認知プロセスが働きません。特に認知症患者では「これはお味噌汁ですよ」と毎回伝えることで、唾液分泌・嚥下準備反射が起動し、安全な嚥下につながります。',
         relatedCore10Items: [5, 9],
+      },
+    ],
+    correctBehaviors: [
+      {
+        id: 'ms-5-c1',
+        category: 'environment',
+        description: '食前にとろみの濃度を確認している',
+        explanation: '正しい行動です。とろみ濃度は嚥下機能評価に基づいて決定されます。VF評価156名中、薄いとろみ63%・中間35%が実情で、「とりあえず濃いとろみ」は過剰対応となります。',
+      },
+      {
+        id: 'ms-5-c2',
+        category: 'timing',
+        description: '食前に「あ〜」と発声させ湿性嗄声を確認している',
+        explanation: '正しい行動です。湿性嗄声の確認は感度80%以上で喉頭侵入・誤嚥を検出できるゼロコストスクリーニング（Warms & Richards 2000）。食前の必須手順です。',
       },
     ],
   },
