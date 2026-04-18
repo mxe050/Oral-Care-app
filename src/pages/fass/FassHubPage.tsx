@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { BookOpen, Search, Video, BarChart3, Trophy, Star, Globe, ExternalLink } from 'lucide-react'
+import { BookOpen, Search, Video, BarChart3, Trophy, Star, Globe, ExternalLink, AlertCircle } from 'lucide-react'
 import { useProgressStore } from '../../stores/progress-store'
 import { BADGES } from '../../types/common'
 import { VideoLinkList, type VideoLink } from '../../components/ui/VideoLinkList'
@@ -27,6 +27,14 @@ const sections = [
     description: '食事介助場面の問題点を見つけるトレーニング',
     gradient: 'from-red-400 to-red-600',
     sectionKey: 'fass-mistake-quiz',
+  },
+  {
+    to: '/fass/ng-quiz',
+    icon: AlertCircle,
+    title: '食事介助 NGクイズ',
+    description: '基本編・ベテラン編全30問でNG行動を見抜く力を鍛える',
+    gradient: 'from-emerald-400 to-emerald-600',
+    sectionKey: 'fass-ng-quiz',
   },
   {
     to: '/fass/self-check',

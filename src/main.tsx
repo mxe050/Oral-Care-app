@@ -14,6 +14,7 @@ import { FassHubPage } from './pages/fass/FassHubPage'
 import { FassLearnPage } from './pages/fass/FassLearnPage'
 import { FassItemDetailPage } from './pages/fass/FassItemDetailPage'
 import { FassMistakeQuizPage } from './pages/fass/FassMistakeQuizPage'
+import { FassNgQuizPage } from './pages/fass/FassNgQuizPage'
 import { FassSelfCheckPage } from './pages/fass/FassSelfCheckPage'
 import { FassEvidencePage } from './pages/fass/FassEvidencePage'
 import { OralCareHubPage } from './pages/oral-care/OralCareHubPage'
@@ -44,6 +45,7 @@ createRoot(document.getElementById('root')!).render(
           <Route path="fass/learn" element={<FassLearnPage />} />
           <Route path="fass/learn/:itemId" element={<FassItemDetailPage />} />
           <Route path="fass/mistake-quiz" element={<FassMistakeQuizPage />} />
+          <Route path="fass/ng-quiz" element={<FassNgQuizPage />} />
           <Route path="fass/self-check" element={<FassSelfCheckPage />} />
           <Route path="fass/evidence" element={<FassEvidencePage />} />
           {/* Oral Care Module */}
