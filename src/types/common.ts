@@ -56,9 +56,9 @@ export const BADGES = {
   },
   core10Complete: {
     id: 'core10Complete',
-    name: 'CORE10達人',
+    name: 'FASS・CORE10達人',
     emoji: '🍽️',
-    description: 'CORE10/FASSモジュールを全て完了した',
+    description: 'FASS・CORE10モジュールを全て完了した',
   },
   quizStreak3: {
     id: 'quizStreak3',

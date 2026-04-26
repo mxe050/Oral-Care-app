@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { BookOpen, Search, Video, BarChart3, Trophy, Star, PlayCircle, AlertCircle } from 'lucide-react'
+import { BookOpen, Search, Video, BarChart3, Trophy, Star, PlayCircle, AlertCircle, MessageCircleHeart } from 'lucide-react'
 import { useProgressStore } from '../../stores/progress-store'
 import { BADGES } from '../../types/common'
 import { VideoLinkList, type VideoLink } from '../../components/ui/VideoLinkList'
@@ -35,6 +35,14 @@ const sections = [
     sectionKey: 'fass-ng-quiz',
   },
   {
+    to: '/fass/conversation',
+    icon: MessageCircleHeart,
+    title: '会話で学ぶ (FASS)',
+    description: '患者との会話・観察からFASS 10項目を判定するストーリー学習',
+    gradient: 'from-pink-400 to-rose-500',
+    sectionKey: 'fass-conversation',
+  },
+  {
     to: '/fass/self-check',
     icon: Video,
     title: 'バーチャル介助評価',
@@ -68,7 +76,7 @@ export function FassHubPage() {
     <div className="mx-auto max-w-lg space-y-6">
       <div>
         <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100">
-          CORE10 マスター
+          FASS・CORE10 マスター
         </h2>
         <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
           食事介助の「手の技」を客観的に評価・向上させる

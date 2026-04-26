@@ -43,11 +43,11 @@ interface ProgressState {
 const MODULE_SECTIONS: Record<string, string[]> = {
   ohat: [
     'ohat-learn', 'ohat-quiz-beginner', 'ohat-quiz-intermediate',
-    'ohat-quiz-advanced', 'ohat-clinical', 'ohat-next-action',
+    'ohat-quiz-advanced', 'ohat-conversation', 'ohat-clinical', 'ohat-next-action',
   ],
   fass: [
     'fass-learn', 'fass-mistake-quiz', 'fass-ng-basic', 'fass-ng-advanced',
-    'fass-self-check', 'fass-evidence',
+    'fass-conversation', 'fass-self-check', 'fass-evidence',
   ],
   swallow: [
     'swallow-phases', 'swallow-background', 'swallow-ooda',

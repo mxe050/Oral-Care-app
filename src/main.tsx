@@ -10,6 +10,7 @@ import { OhatCategoryDetailPage } from './pages/ohat/OhatCategoryDetailPage'
 import { OhatQuizPage } from './pages/ohat/OhatQuizPage'
 import { OhatClinicalPage } from './pages/ohat/OhatClinicalPage'
 import { OhatNextActionQuizPage } from './pages/ohat/OhatNextActionQuizPage'
+import { OhatConversationPage } from './pages/ohat/OhatConversationPage'
 import { FassHubPage } from './pages/fass/FassHubPage'
 import { FassLearnPage } from './pages/fass/FassLearnPage'
 import { FassItemDetailPage } from './pages/fass/FassItemDetailPage'
@@ -18,6 +19,7 @@ import { FassNgQuizPage } from './pages/fass/FassNgQuizPage'
 import { FassSelfCheckPage } from './pages/fass/FassSelfCheckPage'
 import { FassEvidencePage } from './pages/fass/FassEvidencePage'
 import { FassVideoTrainingPage } from './pages/fass/FassVideoTrainingPage'
+import { FassConversationPage } from './pages/fass/FassConversationPage'
 import { OralCareHubPage } from './pages/oral-care/OralCareHubPage'
 import { OralCareQuizPage } from './pages/oral-care/OralCareQuizPage'
 import { SwallowHubPage } from './pages/swallow/SwallowHubPage'
@@ -39,6 +41,7 @@ createRoot(document.getElementById('root')!).render(
           <Route path="ohat/learn" element={<OhatLearnPage />} />
           <Route path="ohat/learn/:categoryId" element={<OhatCategoryDetailPage />} />
           <Route path="ohat/quiz" element={<OhatQuizPage />} />
+          <Route path="ohat/conversation" element={<OhatConversationPage />} />
           <Route path="ohat/clinical" element={<OhatClinicalPage />} />
           <Route path="ohat/next-action" element={<OhatNextActionQuizPage />} />
           {/* FASS/CORE10 Module */}
@@ -47,6 +50,7 @@ createRoot(document.getElementById('root')!).render(
           <Route path="fass/learn/:itemId" element={<FassItemDetailPage />} />
           <Route path="fass/mistake-quiz" element={<FassMistakeQuizPage />} />
           <Route path="fass/ng-quiz" element={<FassNgQuizPage />} />
+          <Route path="fass/conversation" element={<FassConversationPage />} />
           <Route path="fass/self-check" element={<FassSelfCheckPage />} />
           <Route path="fass/evidence" element={<FassEvidencePage />} />
           <Route path="fass/video-training" element={<FassVideoTrainingPage />} />

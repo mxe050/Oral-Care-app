@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { BookOpen, HelpCircle, ClipboardList, Users, Trophy, Star } from 'lucide-react'
+import { BookOpen, HelpCircle, ClipboardList, Users, Trophy, Star, MessageCircleHeart } from 'lucide-react'
 import { useProgressStore } from '../../stores/progress-store'
 import { BADGES } from '../../types/common'
 import { VideoLinkList } from '../../components/ui/VideoLinkList'
@@ -27,6 +27,14 @@ const sections = [
     description: '症例写真を見てスコアを判定するトレーニング',
     gradient: 'from-blue-400 to-blue-600',
     sectionKey: 'ohat-quiz',
+  },
+  {
+    to: '/ohat/conversation',
+    icon: MessageCircleHeart,
+    title: '会話で学ぶOHAT',
+    description: '患者との会話・観察所見からOHAT-J 8項目を判定するストーリー学習',
+    gradient: 'from-pink-400 to-rose-500',
+    sectionKey: 'ohat-conversation',
   },
   {
     to: '/ohat/clinical',

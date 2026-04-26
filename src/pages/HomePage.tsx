@@ -39,7 +39,7 @@ const modules = [
   {
     to: '/fass',
     icon: Utensils,
-    title: 'CORE10 マスター',
+    title: 'FASS・CORE10 マスター',
     subtitle: '食を助ける力を磨く',
     description: '10項目の食事介助スキルを鍛える',
     gradient: 'from-amber-400 to-amber-600',
