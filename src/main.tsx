@@ -27,6 +27,9 @@ import { SwallowPhasePage } from './pages/swallow/SwallowPhasePage'
 import { SwallowQuizPage } from './pages/swallow/SwallowQuizPage'
 import { MealRoundPage } from './pages/swallow/MealRoundPage'
 import { BackgroundPage } from './pages/swallow/BackgroundPage'
+import { DiseasesHubPage } from './pages/diseases/DiseasesHubPage'
+import { DementiaHubPage } from './pages/diseases/DementiaHubPage'
+import { HumanitudePage } from './pages/diseases/HumanitudePage'
 import './index.css'
 
 createRoot(document.getElementById('root')!).render(
@@ -63,6 +66,10 @@ createRoot(document.getElementById('root')!).render(
           <Route path="swallow/quiz" element={<SwallowQuizPage />} />
           <Route path="swallow/meal-round" element={<MealRoundPage />} />
           <Route path="swallow/background" element={<BackgroundPage />} />
+          {/* Diseases Module */}
+          <Route path="diseases" element={<DiseasesHubPage />} />
+          <Route path="diseases/dementia" element={<DementiaHubPage />} />
+          <Route path="diseases/dementia/humanitude" element={<HumanitudePage />} />
         </Route>
       </Routes>
     </HashRouter>
