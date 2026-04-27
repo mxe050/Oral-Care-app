@@ -34,6 +34,8 @@ import { StrokePage } from './pages/diseases/StrokePage'
 import { AspirationPneumoniaPage } from './pages/diseases/AspirationPneumoniaPage'
 import { HigherBrainDisorderPage } from './pages/diseases/HigherBrainDisorderPage'
 import { AppetiteLossPage } from './pages/diseases/AppetiteLossPage'
+import { PreEntryCarePage } from './pages/diseases/PreEntryCarePage'
+import { DementiaSwallowingPage } from './pages/diseases/DementiaSwallowingPage'
 import './index.css'
 
 createRoot(document.getElementById('root')!).render(
@@ -74,10 +76,12 @@ createRoot(document.getElementById('root')!).render(
           <Route path="diseases" element={<DiseasesHubPage />} />
           <Route path="diseases/dementia" element={<DementiaHubPage />} />
           <Route path="diseases/dementia/humanitude" element={<HumanitudePage />} />
+          <Route path="diseases/dementia/swallowing" element={<DementiaSwallowingPage />} />
           <Route path="diseases/stroke" element={<StrokePage />} />
           <Route path="diseases/aspiration-pneumonia" element={<AspirationPneumoniaPage />} />
           <Route path="diseases/higher-brain" element={<HigherBrainDisorderPage />} />
           <Route path="diseases/appetite-loss" element={<AppetiteLossPage />} />
+          <Route path="diseases/pre-entry" element={<PreEntryCarePage />} />
         </Route>
       </Routes>
     </HashRouter>

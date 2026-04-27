@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { ArrowLeft, Heart, ChevronRight, Brain } from 'lucide-react'
+import { ArrowLeft, Heart, ChevronRight, Brain, Utensils } from 'lucide-react'
 
 const techniques = [
   {
@@ -8,6 +8,14 @@ const techniques = [
     title: 'ユマニチュード',
     description: 'Yves Gineste・Rosette Marescottiが開発した4本の柱に基づくケア技法',
     gradient: 'from-rose-400 to-pink-600',
+  },
+  {
+    to: '/diseases/dementia/swallowing',
+    icon: Utensils,
+    title: '認知症患者の咀嚼・嚥下(一般)',
+    description:
+      '4大認知症別の摂食困難・認知期/口腔期/咽頭期の対応・環境調整・Comfort feeding',
+    gradient: 'from-amber-400 to-orange-600',
   },
 ] as const
 

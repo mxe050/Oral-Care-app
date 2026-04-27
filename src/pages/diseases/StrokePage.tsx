@@ -401,6 +401,92 @@ export function StrokePage() {
         </div>
       </div>
 
+      {/* 全身の状況から障害部位を想定する一覧 */}
+      <div>
+        <h3 className="mb-2 flex items-center gap-2 text-base font-bold text-gray-900 dark:text-gray-100">
+          <AlertCircle size={16} className="text-amber-500" />
+          全身の状況から、障害部位を想定する
+        </h3>
+        <div className="mb-2 rounded-lg border border-amber-200 bg-amber-50 p-2.5 text-[10px] leading-relaxed text-amber-900 dark:border-amber-800 dark:bg-amber-950/40 dark:text-amber-100">
+          <strong>注意:</strong>{' '}
+          以下は症候から障害部位を「想定する」ためのおおよその対応表です。{' '}
+          <strong>正確な障害部位は、必ず医師の画像所見・診断記載を参照してください。</strong>{' '}
+          ベッドサイドでの観察と診断記録を突き合わせて学習するための一覧です。
+        </div>
+        <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-900">
+          <table className="w-full text-[11px]">
+            <thead className="bg-gradient-to-r from-rose-100 to-red-100 dark:from-rose-900/40 dark:to-red-900/40">
+              <tr>
+                <th className="px-2 py-2 text-left font-bold text-gray-900 dark:text-gray-100">
+                  全身の状況・症候
+                </th>
+                <th className="px-2 py-2 text-left font-bold text-gray-900 dark:text-gray-100">
+                  想定される部位
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
+              {[
+                {
+                  signs:
+                    '対側片麻痺(上肢優位)+ 失語(優位半球)or 半側空間無視(劣位半球)+ 同名半盲、口角からの食物こぼれ、軟口蓋挙上不全',
+                  region: '大脳皮質(中大脳動脈領域)',
+                  badge: 'cortex-mca',
+                },
+                {
+                  signs:
+                    '純粋運動性片麻痺・dysarthria-clumsy hand症候群・パーキンソニズム合併、夜間の不顕性誤嚥が主、咳反射閾値上昇',
+                  region: '大脳基底核(被殻・尾状核)',
+                  badge: 'basal-ganglia',
+                },
+                {
+                  signs:
+                    '対側半身の感覚障害(視床痛)+ 軽度片麻痺、覚醒度低下、注意障害、立ち直り反応の低下',
+                  region: '視床',
+                  badge: 'thalamus',
+                },
+                {
+                  signs:
+                    '急性発症の片麻痺・意識障害・共同偏視、急性期の頭蓋内圧亢進、回復期に仮性球麻痺へ移行',
+                  region: '被殻出血・皮質下出血',
+                  badge: 'putamen-hemorrhage',
+                },
+                {
+                  signs:
+                    '体幹失調・四肢の運動失調(dysmetria)・scanning speech・眼振、座位保持困難、リーチング動作の精度低下',
+                  region: '小脳・脊髄小脳変性症(SCA)',
+                  badge: 'cerebellum',
+                },
+                {
+                  signs:
+                    '同側顔面の温痛覚低下 + 対側半身の温痛覚低下(交叉性感覚障害)+ 同側Horner症候群 + 嗄声 + カーテン徴候、回転性めまい・嘔気',
+                  region: '脳幹・延髄外側症候群(Wallenberg)',
+                  badge: 'brainstem',
+                },
+                {
+                  signs:
+                    '両側痙性麻痺・強制泣き笑い・構音障害(三徴)、舌の運動制限、丸呑み・かき込み、認知機能低下を併発',
+                  region: '両側半球障害(仮性球麻痺)',
+                  badge: 'pseudobulbar',
+                },
+              ].map((row) => (
+                <tr key={row.badge} className="hover:bg-gray-50 dark:hover:bg-gray-800/40">
+                  <td className="px-2 py-2 align-top leading-relaxed text-gray-700 dark:text-gray-300">
+                    {row.signs}
+                  </td>
+                  <td className="px-2 py-2 align-top text-[10px] font-bold leading-relaxed text-rose-700 dark:text-rose-300">
+                    → {row.region}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="mt-2 text-[10px] leading-relaxed text-gray-500 dark:text-gray-400">
+          症候は単独ではなく複数併発することが多く、また病巣サイズ・既往により症状の重みが異なります。下のボタンから各部位の詳細(6項目)を確認してください。
+        </p>
+      </div>
+
       {/* 障害部位ボタン群 */}
       <div className="space-y-3">
         {REGIONS.map((r) => {
