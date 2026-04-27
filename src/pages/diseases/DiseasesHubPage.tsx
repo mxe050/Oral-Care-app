@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { ArrowLeft, Brain, ChevronRight, Stethoscope, Activity, Wind, Sparkles, Soup, DoorOpen } from 'lucide-react'
+import { ArrowLeft, Brain, ChevronRight, Stethoscope, Activity, Wind, Sparkles, Soup } from 'lucide-react'
 
 const diseases = [
   {
@@ -40,14 +40,6 @@ const diseases = [
     title: '食欲不振・拒否',
     description: '原因の鑑別フローと、身体・精神・環境別の対処法',
     gradient: 'from-orange-400 to-amber-600',
-    available: true,
-  },
-  {
-    to: '/diseases/pre-entry',
-    icon: DoorOpen,
-    title: '勝負は病室入室前から',
-    description: 'ノック・出会い・配膳までの「雰囲気づくり」が嚥下安全性を決める',
-    gradient: 'from-rose-400 to-pink-600',
     available: true,
   },
 ] as const

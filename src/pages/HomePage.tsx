@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Smile, Brain, Utensils, BookOpen, Trophy, Sparkles, ChevronDown, Droplets, AlertTriangle, Stethoscope, ChevronRight } from 'lucide-react'
+import { Smile, Brain, Utensils, BookOpen, Trophy, Sparkles, ChevronDown, Droplets, AlertTriangle, Stethoscope, ChevronRight, DoorOpen } from 'lucide-react'
 import { useProgressStore } from '../stores/progress-store'
 import { XpDisplay } from '../components/ui/XpDisplay'
 import { StreakDisplay } from '../components/ui/StreakDisplay'
@@ -243,6 +243,23 @@ export function HomePage() {
           <h3 className="font-bold text-gray-900 dark:text-gray-100">疾患から学ぼう</h3>
           <p className="text-xs text-gray-500 dark:text-gray-400">
             疾患別のケア技法・コミュニケーション戦略を体系的に学ぶ
+          </p>
+        </div>
+        <ChevronRight size={20} className="text-gray-400 dark:text-gray-500" />
+      </Link>
+
+      {/* 勝負は病室入室前から - 独立ボタン */}
+      <Link
+        to="/diseases/pre-entry"
+        className="flex items-center gap-4 rounded-2xl border-2 border-rose-300 bg-gradient-to-br from-rose-50 to-pink-50 p-4 transition-all hover:border-rose-500 hover:shadow-md active:scale-[0.98] dark:border-rose-700 dark:from-rose-950 dark:to-pink-950 dark:hover:border-rose-500"
+      >
+        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-rose-400 to-pink-600 text-white shadow-sm">
+          <DoorOpen size={22} />
+        </div>
+        <div className="flex-1">
+          <h3 className="font-bold text-gray-900 dark:text-gray-100">勝負は病室入室前から</h3>
+          <p className="text-xs text-gray-500 dark:text-gray-400">
+            ノック・声のトーン・雰囲気づくりが、口腔ケアと食事介助の質を決める
           </p>
         </div>
         <ChevronRight size={20} className="text-gray-400 dark:text-gray-500" />
