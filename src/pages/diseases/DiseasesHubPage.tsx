@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { ArrowLeft, Brain, ChevronRight, Stethoscope } from 'lucide-react'
+import { ArrowLeft, Brain, ChevronRight, Stethoscope, Activity, Wind, Sparkles, Soup } from 'lucide-react'
 
 const diseases = [
   {
@@ -8,6 +8,38 @@ const diseases = [
     title: '認知症患者',
     description: 'BPSDへの非薬物的アプローチ・コミュニケーションケア技法',
     gradient: 'from-violet-400 to-purple-600',
+    available: true,
+  },
+  {
+    to: '/diseases/stroke',
+    icon: Activity,
+    title: '脳卒中',
+    description: '障害部位別の摂食嚥下障害と、姿勢・食形態・介助のポイント',
+    gradient: 'from-red-400 to-rose-600',
+    available: true,
+  },
+  {
+    to: '/diseases/aspiration-pneumonia',
+    icon: Wind,
+    title: '誤嚥性肺炎',
+    description: '早期経口摂取の根拠・タイミング・段階的食上げの実践',
+    gradient: 'from-sky-400 to-cyan-600',
+    available: true,
+  },
+  {
+    to: '/diseases/higher-brain',
+    icon: Sparkles,
+    title: '高次障害',
+    description: '失語・失行・失認・半側空間無視・注意障害と摂食嚥下',
+    gradient: 'from-indigo-400 to-blue-600',
+    available: true,
+  },
+  {
+    to: '/diseases/appetite-loss',
+    icon: Soup,
+    title: '食欲不振・拒否',
+    description: '原因の鑑別フローと、身体・精神・環境別の対処法',
+    gradient: 'from-orange-400 to-amber-600',
     available: true,
   },
 ] as const

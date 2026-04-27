@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+.ocr_workspace/
+tmp_imgs/
+tmp_ocr_output/
+.copy_images.mjs
+.tmp_copy.mjs
+jpn.traineddata
+scripts/
