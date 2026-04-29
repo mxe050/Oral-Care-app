@@ -36,6 +36,8 @@ import { HigherBrainDisorderPage } from './pages/diseases/HigherBrainDisorderPag
 import { AppetiteLossPage } from './pages/diseases/AppetiteLossPage'
 import { PreEntryCarePage } from './pages/diseases/PreEntryCarePage'
 import { DementiaSwallowingPage } from './pages/diseases/DementiaSwallowingPage'
+import { NewsHubPage } from './pages/news/NewsHubPage'
+import { NutritionInterventionPage } from './pages/news/NutritionInterventionPage'
 import './index.css'
 
 createRoot(document.getElementById('root')!).render(
@@ -82,6 +84,9 @@ createRoot(document.getElementById('root')!).render(
           <Route path="diseases/higher-brain" element={<HigherBrainDisorderPage />} />
           <Route path="diseases/appetite-loss" element={<AppetiteLossPage />} />
           <Route path="diseases/pre-entry" element={<PreEntryCarePage />} />
+          {/* News Module */}
+          <Route path="news" element={<NewsHubPage />} />
+          <Route path="news/nutrition-intervention-2026" element={<NutritionInterventionPage />} />
         </Route>
       </Routes>
     </HashRouter>

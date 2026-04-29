@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Smile, Brain, Utensils, BookOpen, Trophy, Sparkles, ChevronDown, Droplets, AlertTriangle, Stethoscope, ChevronRight, DoorOpen } from 'lucide-react'
+import { Smile, Brain, Utensils, BookOpen, Trophy, Sparkles, ChevronDown, Droplets, AlertTriangle, Stethoscope, ChevronRight, DoorOpen, Newspaper } from 'lucide-react'
 import { useProgressStore } from '../stores/progress-store'
 import { XpDisplay } from '../components/ui/XpDisplay'
 import { StreakDisplay } from '../components/ui/StreakDisplay'
@@ -260,6 +260,23 @@ export function HomePage() {
           <h3 className="font-bold text-gray-900 dark:text-gray-100">勝負は病室入室前から</h3>
           <p className="text-xs text-gray-500 dark:text-gray-400">
             ノック・声のトーン・雰囲気づくりが、口腔ケアと食事介助の質を決める
+          </p>
+        </div>
+        <ChevronRight size={20} className="text-gray-400 dark:text-gray-500" />
+      </Link>
+
+      {/* その他の最新情報 - 独立ボタン */}
+      <Link
+        to="/news"
+        className="flex items-center gap-4 rounded-2xl border-2 border-sky-300 bg-gradient-to-br from-sky-50 to-cyan-50 p-4 transition-all hover:border-sky-500 hover:shadow-md active:scale-[0.98] dark:border-sky-700 dark:from-sky-950 dark:to-cyan-950 dark:hover:border-sky-500"
+      >
+        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-sky-400 to-cyan-600 text-white shadow-sm">
+          <Newspaper size={22} />
+        </div>
+        <div className="flex-1">
+          <h3 className="font-bold text-gray-900 dark:text-gray-100">その他の最新情報</h3>
+          <p className="text-xs text-gray-500 dark:text-gray-400">
+            口腔ケア・摂食嚥下に関連する最新の臨床エビデンス・トピック
           </p>
         </div>
         <ChevronRight size={20} className="text-gray-400 dark:text-gray-500" />
