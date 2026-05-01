@@ -10,6 +10,7 @@ import {
   Heart,
   ExternalLink,
   Sparkles,
+  PlayCircle,
 } from 'lucide-react'
 
 interface KnockStep {
@@ -235,6 +236,27 @@ export function PreEntryCarePage() {
           </p>
         </div>
       </div>
+
+      {/* 入室前からを実践している動画(まず視聴) */}
+      <a
+        href="https://www.youtube.com/watch?v=C7V03-Mhkdw"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center gap-3 rounded-xl border-2 border-red-400 bg-gradient-to-br from-red-50 to-rose-100 p-3 shadow-sm transition-all hover:shadow-md active:scale-[0.98] dark:border-red-700 dark:from-red-950/50 dark:to-rose-900/40"
+      >
+        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-red-500 text-white">
+          <PlayCircle size={24} />
+        </div>
+        <div className="min-w-0 flex-1">
+          <div className="text-sm font-bold text-gray-900 dark:text-gray-100">
+            入室前からを実践している動画
+          </div>
+          <div className="text-[11px] font-semibold leading-relaxed text-red-700 dark:text-red-300">
+            ユマニチュード紹介動画・まずこれを視聴して
+          </div>
+        </div>
+        <ExternalLink size={14} className="shrink-0 text-gray-400" />
+      </a>
 
       {/* 概要 */}
       <div className="rounded-xl border border-rose-200 bg-gradient-to-br from-rose-50 to-pink-50 p-4 dark:border-rose-900/40 dark:from-rose-950/40 dark:to-pink-950/40">

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { BookOpen, HelpCircle, ClipboardList, Users, Trophy, Star, MessageCircleHeart } from 'lucide-react'
+import { BookOpen, HelpCircle, ClipboardList, Users, Trophy, Star, MessageCircleHeart, AlertTriangle } from 'lucide-react'
 import { useProgressStore } from '../../stores/progress-store'
 import { BADGES } from '../../types/common'
 import { VideoLinkList } from '../../components/ui/VideoLinkList'
@@ -91,6 +91,46 @@ export function OhatHubPage() {
             </div>
           </div>
         )}
+      </div>
+
+      {/* OHAT前のトラブル防止チェック */}
+      <div className="rounded-xl border-2 border-amber-300 bg-gradient-to-br from-amber-50 to-orange-50 p-4 shadow-sm dark:border-amber-700 dark:from-amber-950/40 dark:to-orange-950/40">
+        <div className="mb-2 flex items-center gap-2">
+          <AlertTriangle size={18} className="text-amber-600 dark:text-amber-300" />
+          <h3 className="text-sm font-bold text-amber-800 dark:text-amber-200">
+            OHATの前に、以下の2点はトラブル防止で確認必要！
+          </h3>
+        </div>
+        <div className="space-y-3">
+          <div className="rounded-lg border border-amber-200 bg-white p-3 dark:border-amber-800 dark:bg-gray-900">
+            <div className="mb-1 flex items-center gap-1.5">
+              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-amber-500 text-xs font-black text-white">
+                1
+              </span>
+              <h4 className="text-xs font-bold text-gray-900 dark:text-gray-100">
+                義歯があるか？
+              </h4>
+            </div>
+            <ul className="ml-7 space-y-0.5 text-[11px] leading-relaxed text-gray-700 dark:text-gray-300">
+              <li>• 義歯紛失の誤解トラブルを避けるため。</li>
+              <li>• 特にERからの入院。</li>
+              <li>• 家族が知らないこともある。</li>
+            </ul>
+          </div>
+          <div className="rounded-lg border border-amber-200 bg-white p-3 dark:border-amber-800 dark:bg-gray-900">
+            <div className="mb-1 flex items-center gap-1.5">
+              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-amber-500 text-xs font-black text-white">
+                2
+              </span>
+              <h4 className="text-xs font-bold text-gray-900 dark:text-gray-100">
+                すぐにでも抜けそうな歯があるか？
+              </h4>
+            </div>
+            <p className="ml-7 text-[11px] leading-relaxed text-gray-700 dark:text-gray-300">
+              食事介助、挿管で、抜けたら大変です。
+            </p>
+          </div>
+        </div>
       </div>
 
       <div className="space-y-3">
