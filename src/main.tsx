@@ -36,6 +36,7 @@ import { HigherBrainDisorderPage } from './pages/diseases/HigherBrainDisorderPag
 import { AppetiteLossPage } from './pages/diseases/AppetiteLossPage'
 import { PreEntryCarePage } from './pages/diseases/PreEntryCarePage'
 import { DementiaSwallowingPage } from './pages/diseases/DementiaSwallowingPage'
+import { DementiaAppetiteLossQaPage } from './pages/diseases/DementiaAppetiteLossQaPage'
 import { NewsHubPage } from './pages/news/NewsHubPage'
 import { NutritionInterventionPage } from './pages/news/NutritionInterventionPage'
 import './index.css'
@@ -79,6 +80,7 @@ createRoot(document.getElementById('root')!).render(
           <Route path="diseases/dementia" element={<DementiaHubPage />} />
           <Route path="diseases/dementia/humanitude" element={<HumanitudePage />} />
           <Route path="diseases/dementia/swallowing" element={<DementiaSwallowingPage />} />
+          <Route path="diseases/dementia/appetite-loss-qa" element={<DementiaAppetiteLossQaPage />} />
           <Route path="diseases/stroke" element={<StrokePage />} />
           <Route path="diseases/aspiration-pneumonia" element={<AspirationPneumoniaPage />} />
           <Route path="diseases/higher-brain" element={<HigherBrainDisorderPage />} />
