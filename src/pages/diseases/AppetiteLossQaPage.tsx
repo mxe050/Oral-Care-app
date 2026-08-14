@@ -69,21 +69,6 @@ export function AppetiteLossQaPage() {
         </div>
       </section>
 
-      <section className="rounded-2xl border border-teal-200 bg-teal-50/70 p-4 dark:border-teal-900/50 dark:bg-teal-950/30">
-        <h3 className="text-base font-bold text-teal-950 dark:text-teal-100">
-          認知症の方への支援
-        </h3>
-        <p className="mt-1 text-sm leading-6 text-teal-950/90 dark:text-teal-100/90">
-          食べ物と認識しにくい、食具を使いにくい、不安や妄想が強いなど、認知症に特有の背景は専用Q&Aで扱います。
-        </p>
-        <Link
-          to="/diseases/dementia/appetite-loss-qa"
-          className="mt-3 inline-flex min-h-11 items-center rounded-xl bg-teal-700 px-4 py-2 text-sm font-bold text-white transition-colors hover:bg-teal-800 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 dark:focus:ring-offset-gray-950"
-        >
-          認知症に特有な食欲不振・拒否の対応Q&A
-        </Link>
-      </section>
-
       <section aria-labelledby="general-qa-title">
         <div className="mb-3">
           <div className="flex items-center gap-2">

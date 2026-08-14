@@ -81,13 +81,6 @@ export function DementiaHubPage() {
           )
         })}
       </div>
-
-      <div className="rounded-xl bg-white/70 p-4 text-xs leading-relaxed text-gray-600 dark:bg-gray-900/60 dark:text-gray-300">
-        <p className="font-bold text-gray-700 dark:text-gray-200">今後追加予定</p>
-        <p className="mt-1">
-          パーソン・センタード・ケア(Kitwood)、バリデーション療法(Feil)、レミニシング療法、認知症ケアマッピング(DCM)など。
-        </p>
-      </div>
     </div>
   )
 }

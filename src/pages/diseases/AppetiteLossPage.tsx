@@ -463,10 +463,10 @@ export function AppetiteLossPage() {
       </div>
       <Link
         to="/diseases/appetite-loss/qa"
-        className="block rounded-xl border border-teal-200 bg-teal-50 p-4 transition-colors hover:bg-teal-100 focus:outline-none focus:ring-2 focus:ring-teal-500 dark:border-teal-900/50 dark:bg-teal-950/30 dark:hover:bg-teal-950/50"
+        className="block rounded-xl border border-teal-800 bg-gradient-to-r from-teal-700 to-cyan-700 p-4 shadow-md transition-all hover:from-teal-800 hover:to-cyan-800 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 dark:border-teal-500 dark:from-teal-700 dark:to-cyan-700 dark:focus:ring-offset-gray-900"
       >
-        <span className="block text-sm font-bold text-teal-950 dark:text-teal-100">総合的具体的方法Q&A</span>
-        <span className="mt-1 block text-xs leading-relaxed text-teal-900 dark:text-teal-100/90">急変の確認から、原因の探し方、嚥下・水分・栄養・意思決定までをQ&Aで確認する</span>
+        <span className="block text-sm font-bold text-white">総合的具体的方法Q&A</span>
+        <span className="mt-1 block text-xs leading-relaxed text-teal-50">急変の確認から、原因の探し方、嚥下・水分・栄養・意思決定までをQ&Aで確認する</span>
       </Link>
       {/* 1. 食欲不振・拒否の原因 */}
       <div>

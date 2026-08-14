@@ -97,13 +97,6 @@ export function DiseasesHubPage() {
           )
         })}
       </div>
-
-      <div className="rounded-xl bg-white/70 p-4 text-xs leading-relaxed text-gray-600 dark:bg-gray-900/60 dark:text-gray-300">
-        <p className="font-bold text-gray-700 dark:text-gray-200">今後追加予定</p>
-        <p className="mt-1">
-          パーキンソン病・脳卒中後遺症・サルコペニア/フレイル・がん終末期・ALS など、疾患別のケア技法を順次追加していきます。
-        </p>
-      </div>
     </div>
   )
 }
