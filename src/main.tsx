@@ -34,7 +34,9 @@ import { StrokePage } from './pages/diseases/StrokePage'
 import { AspirationPneumoniaPage } from './pages/diseases/AspirationPneumoniaPage'
 import { HigherBrainDisorderPage } from './pages/diseases/HigherBrainDisorderPage'
 import { AppetiteLossPage } from './pages/diseases/AppetiteLossPage'
-import { AppetiteLossQaPage } from './pages/diseases/AppetiteLossQaPage'
+import { AppetiteLossQaIndexPage } from './pages/diseases/AppetiteLossQaIndexPage'
+import { AppetiteLossQaDetailPage } from './pages/diseases/AppetiteLossQaDetailPage'
+import { AppetiteLossAlgorithmPage } from './pages/diseases/AppetiteLossAlgorithmPage'
 import { PreEntryCarePage } from './pages/diseases/PreEntryCarePage'
 import { DementiaSwallowingPage } from './pages/diseases/DementiaSwallowingPage'
 import { DementiaAppetiteLossQaPage } from './pages/diseases/DementiaAppetiteLossQaPage'
@@ -86,7 +88,9 @@ createRoot(document.getElementById('root')!).render(
           <Route path="diseases/aspiration-pneumonia" element={<AspirationPneumoniaPage />} />
           <Route path="diseases/higher-brain" element={<HigherBrainDisorderPage />} />
           <Route path="diseases/appetite-loss" element={<AppetiteLossPage />} />
-          <Route path="diseases/appetite-loss/qa" element={<AppetiteLossQaPage />} />
+          <Route path="diseases/appetite-loss/qa" element={<AppetiteLossQaIndexPage />} />
+          <Route path="diseases/appetite-loss/qa/:questionId" element={<AppetiteLossQaDetailPage />} />
+          <Route path="diseases/appetite-loss/algorithm" element={<AppetiteLossAlgorithmPage />} />
           <Route path="diseases/pre-entry" element={<PreEntryCarePage />} />
           {/* News Module */}
           <Route path="news" element={<NewsHubPage />} />
