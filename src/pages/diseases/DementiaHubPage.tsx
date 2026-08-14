@@ -20,7 +20,7 @@ const techniques = [
   {
     to: '/diseases/dementia/appetite-loss-qa',
     icon: CircleHelp,
-    title: '食欲不振・拒否の対応Q&A',
+    title: '認知症に特有な食欲不振・拒否の対応Q&A',
     description:
       '原因確認から介助・環境調整・栄養・意思決定まで、29の質問で整理',
     gradient: 'from-teal-500 to-cyan-600',

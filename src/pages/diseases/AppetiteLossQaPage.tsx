@@ -1,4 +1,4 @@
-import { type KeyboardEvent, useState } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
   AlertCircle,
@@ -10,140 +10,112 @@ import {
   Utensils,
 } from 'lucide-react'
 import {
-  dementiaAppetiteQaMaterials,
-  dementiaAppetiteQaPriorities,
-  dementiaAppetiteQaTopics,
-} from '../../data/dementia-appetite-qa'
+  appetiteLossQaMaterials,
+  appetiteLossQaPriorities,
+  appetiteLossQaTopics,
+} from '../../data/appetite-loss-qa'
 
-export function DementiaAppetiteLossQaPage() {
-  const [activeTopicId, setActiveTopicId] = useState(dementiaAppetiteQaTopics[0].id)
+export function AppetiteLossQaPage() {
+  const [activeTopicId, setActiveTopicId] = useState(appetiteLossQaTopics[0].id)
   const [openQuestionId, setOpenQuestionId] = useState(
-    dementiaAppetiteQaTopics[0].questions[0].id,
+    appetiteLossQaTopics[0].questions[0].id,
   )
 
   const activeTopic =
-    dementiaAppetiteQaTopics.find((topic) => topic.id === activeTopicId) ??
-    dementiaAppetiteQaTopics[0]
+    appetiteLossQaTopics.find((topic) => topic.id === activeTopicId) ??
+    appetiteLossQaTopics[0]
 
   const selectTopic = (topicId: string) => {
-    const topic = dementiaAppetiteQaTopics.find((item) => item.id === topicId)
+    const topic = appetiteLossQaTopics.find((item) => item.id === topicId)
     if (!topic) return
 
     setActiveTopicId(topic.id)
     setOpenQuestionId(topic.questions[0].id)
   }
 
-  const handleTopicKeyDown = (
-    event: KeyboardEvent<HTMLButtonElement>,
-    currentIndex: number,
-  ) => {
-    const topicCount = dementiaAppetiteQaTopics.length
-    let nextIndex = currentIndex
-
-    if (event.key === 'ArrowRight') {
-      nextIndex = (currentIndex + 1) % topicCount
-    } else if (event.key === 'ArrowLeft') {
-      nextIndex = (currentIndex - 1 + topicCount) % topicCount
-    } else if (event.key === 'Home') {
-      nextIndex = 0
-    } else if (event.key === 'End') {
-      nextIndex = topicCount - 1
-    } else {
-      return
-    }
-
-    event.preventDefault()
-    const nextTopic = dementiaAppetiteQaTopics[nextIndex]
-    selectTopic(nextTopic.id)
-    document.getElementById('appetite-topic-tab-' + nextTopic.id)?.focus()
-  }
-
   return (
     <div className="mx-auto max-w-lg space-y-5">
       <div className="flex items-start gap-2">
         <Link
-          to="/diseases/dementia"
+          to="/diseases/appetite-loss"
           className="mt-0.5 shrink-0 rounded-lg p-1 text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-500 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-100"
-          aria-label="認知症患者へ戻る"
+          aria-label="食欲不振・拒否へ戻る"
         >
           <ArrowLeft size={22} />
         </Link>
         <div className="min-w-0">
           <h2 className="text-xl font-bold tracking-tight text-gray-900 dark:text-gray-100">
-            認知症に特有な食欲不振・拒否の対応Q&A
+            総合的具体的方法Q&A
           </h2>
           <p className="mt-1 text-sm leading-6 text-gray-600 dark:text-gray-300">
-            認知症で起こりやすい「食べにくさ」と、本人に合う支援を選ぶ
+            「食べない・食べられない」を、急変の確認から具体的に整理する
           </p>
         </div>
       </div>
-      <section className="rounded-2xl border border-teal-200 bg-teal-50/70 p-4 dark:border-teal-900/50 dark:bg-teal-950/30">
-        <h3 className="text-base font-bold text-teal-950 dark:text-teal-100">まず、総合的な原因を確認</h3>
-        <p className="mt-1 text-sm leading-6 text-teal-950/90 dark:text-teal-100/90">
-          歯・義歯、便秘、薬、急な病気など、認知症に限らない確認と具体策は{' '}
-          <Link to="/diseases/appetite-loss/qa" className="font-bold underline underline-offset-2">
-            「総合的具体的方法Q&A」
-          </Link>
-          を参照してください。
-        </p>
-      </section>
-      <section
-        aria-labelledby="first-step-title"
-        className="rounded-2xl border border-amber-200 bg-gradient-to-br from-amber-50 to-orange-50 p-4 shadow-sm dark:border-amber-900/50 dark:from-amber-950/40 dark:to-orange-950/30"
-      >
+
+      <section className="rounded-2xl border border-amber-200 bg-gradient-to-br from-amber-50 to-orange-50 p-4 shadow-sm dark:border-amber-900/50 dark:from-amber-950/40 dark:to-orange-950/30">
         <div className="flex items-start gap-3">
           <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-amber-500 text-white shadow-sm">
             <Utensils size={20} aria-hidden="true" />
           </div>
           <div>
-            <h3
-              id="first-step-title"
-              className="text-base font-bold text-amber-950 dark:text-amber-100"
-            >
+            <h3 className="text-base font-bold text-amber-950 dark:text-amber-100">
               最初の一歩
             </h3>
             <p className="mt-1 text-base leading-7 text-amber-950/90 dark:text-amber-100/90">
-              認知症では、食べ物と認識しにくい、食具を使いにくい、注意が続かない、不安や妄想から拒否することがあります。
-              ただし急な変化やむせは認知症のせいと決めつけず、医療者へ相談します。
+              食欲不振・拒否は症状です。窒息や急な病気を見逃さず、口・痛み・便秘・薬・気分・嚥下・環境を順番に確かめます。
             </p>
           </div>
         </div>
       </section>
 
-      <section aria-labelledby="qa-title">
+      <section className="rounded-2xl border border-teal-200 bg-teal-50/70 p-4 dark:border-teal-900/50 dark:bg-teal-950/30">
+        <h3 className="text-base font-bold text-teal-950 dark:text-teal-100">
+          認知症の方への支援
+        </h3>
+        <p className="mt-1 text-sm leading-6 text-teal-950/90 dark:text-teal-100/90">
+          食べ物と認識しにくい、食具を使いにくい、不安や妄想が強いなど、認知症に特有の背景は専用Q&Aで扱います。
+        </p>
+        <Link
+          to="/diseases/dementia/appetite-loss-qa"
+          className="mt-3 inline-flex min-h-11 items-center rounded-xl bg-teal-700 px-4 py-2 text-sm font-bold text-white transition-colors hover:bg-teal-800 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 dark:focus:ring-offset-gray-950"
+        >
+          認知症に特有な食欲不振・拒否の対応Q&A
+        </Link>
+      </section>
+
+      <section aria-labelledby="general-qa-title">
         <div className="mb-3">
           <div className="flex items-center gap-2">
-            <CircleHelp size={19} className="text-teal-600 dark:text-teal-300" aria-hidden="true" />
-            <h3 id="qa-title" className="text-lg font-bold text-gray-900 dark:text-gray-100">
+            <CircleHelp
+              size={19}
+              className="text-teal-600 dark:text-teal-300"
+              aria-hidden="true"
+            />
+            <h3 id="general-qa-title" className="text-lg font-bold text-gray-900 dark:text-gray-100">
               テーマを選ぶ
             </h3>
           </div>
           <p className="mt-1 text-sm leading-6 text-gray-600 dark:text-gray-300">
-            質問をタップすると、対応のポイントと根拠を確認できます。
+            質問をタップすると、確認することと次の行動を読めます。
           </p>
         </div>
 
         <div
           role="tablist"
-          aria-label="食欲不振・拒否の対応テーマ"
+          aria-label="総合的具体的方法Q&Aのテーマ"
           className="-mx-4 flex snap-x gap-2 overflow-x-auto px-4 pb-2 [scrollbar-width:thin]"
         >
-          {dementiaAppetiteQaTopics.map((topic, topicIndex) => {
+          {appetiteLossQaTopics.map((topic) => {
             const isSelected = topic.id === activeTopic.id
 
             return (
               <button
                 key={topic.id}
-                id={'appetite-topic-tab-' + topic.id}
                 type="button"
                 role="tab"
                 aria-selected={isSelected}
-                aria-controls={
-                  isSelected ? 'appetite-topic-panel-' + topic.id : undefined
-                }
-                tabIndex={isSelected ? 0 : -1}
                 onClick={() => selectTopic(topic.id)}
-                onKeyDown={(event) => handleTopicKeyDown(event, topicIndex)}
                 className={
                   'min-h-11 shrink-0 snap-start rounded-xl border px-4 py-2 text-sm font-bold transition-colors focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 dark:focus:ring-offset-gray-950 ' +
                   (isSelected
@@ -157,14 +129,11 @@ export function DementiaAppetiteLossQaPage() {
           })}
         </div>
 
-        <div
-          id={'appetite-topic-panel-' + activeTopic.id}
-          role="tabpanel"
-          aria-labelledby={'appetite-topic-tab-' + activeTopic.id}
-          className="rounded-2xl border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-900"
-        >
+        <div className="rounded-2xl border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-900">
           <div className="border-b border-gray-100 bg-teal-50/70 p-4 dark:border-gray-800 dark:bg-teal-950/25">
-            <h4 className="text-base font-bold text-gray-900 dark:text-gray-100">{activeTopic.title}</h4>
+            <h4 className="text-base font-bold text-gray-900 dark:text-gray-100">
+              {activeTopic.title}
+            </h4>
             <p className="mt-1 text-sm leading-6 text-gray-700 dark:text-gray-200">
               {activeTopic.description}
             </p>
@@ -173,7 +142,6 @@ export function DementiaAppetiteLossQaPage() {
           <div className="space-y-3 p-3">
             {activeTopic.questions.map((item) => {
               const isOpen = openQuestionId === item.id
-              const answerId = 'appetite-answer-' + item.id
 
               return (
                 <article
@@ -184,7 +152,6 @@ export function DementiaAppetiteLossQaPage() {
                     type="button"
                     onClick={() => setOpenQuestionId(isOpen ? '' : item.id)}
                     aria-expanded={isOpen}
-                    aria-controls={answerId}
                     className="flex min-h-12 w-full items-center gap-3 p-4 text-left transition-colors hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-teal-500 dark:hover:bg-gray-800/70"
                   >
                     <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-teal-100 text-teal-700 dark:bg-teal-900/60 dark:text-teal-200">
@@ -204,10 +171,7 @@ export function DementiaAppetiteLossQaPage() {
                   </button>
 
                   {isOpen && (
-                    <div
-                      id={answerId}
-                      className="space-y-4 border-t border-gray-100 p-4 dark:border-gray-800"
-                    >
+                    <div className="space-y-4 border-t border-gray-100 p-4 dark:border-gray-800">
                       {item.lead && (
                         <p className="rounded-xl border border-teal-100 bg-teal-50 p-3 text-base font-bold leading-7 text-teal-950 dark:border-teal-900/60 dark:bg-teal-950/40 dark:text-teal-50">
                           {item.lead}
@@ -250,19 +214,19 @@ export function DementiaAppetiteLossQaPage() {
                           <ul className="mt-3 space-y-2 border-t border-gray-200 pt-3 text-xs leading-5 text-gray-600 dark:border-gray-700 dark:text-gray-300">
                             {item.resources.map((resource) => (
                               <li key={resource.label}>
-                                {resource.href ? (
-                                  <a
-                                    href={resource.href}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-start gap-1 text-teal-700 underline decoration-teal-300 underline-offset-2 hover:text-teal-900 dark:text-teal-300 dark:hover:text-teal-100"
-                                  >
-                                    <ExternalLink size={13} aria-hidden="true" className="mt-0.5 shrink-0" />
-                                    <span>{resource.label}</span>
-                                  </a>
-                                ) : (
-                                  resource.label
-                                )}
+                                <a
+                                  href={resource.href}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="inline-flex items-start gap-1 text-teal-700 underline decoration-teal-300 underline-offset-2 hover:text-teal-900 dark:text-teal-300 dark:hover:text-teal-100"
+                                >
+                                  <ExternalLink
+                                    size={13}
+                                    aria-hidden="true"
+                                    className="mt-0.5 shrink-0"
+                                  />
+                                  <span>{resource.label}</span>
+                                </a>
                               </li>
                             ))}
                           </ul>
@@ -277,18 +241,19 @@ export function DementiaAppetiteLossQaPage() {
         </div>
       </section>
 
-      <section
-        aria-labelledby="priority-title"
-        className="rounded-2xl border border-violet-200 bg-violet-50/70 p-4 dark:border-violet-900/50 dark:bg-violet-950/30"
-      >
+      <section className="rounded-2xl border border-violet-200 bg-violet-50/70 p-4 dark:border-violet-900/50 dark:bg-violet-950/30">
         <div className="flex items-center gap-2">
-          <CheckCircle2 size={19} className="text-violet-700 dark:text-violet-300" aria-hidden="true" />
-          <h3 id="priority-title" className="text-lg font-bold text-violet-950 dark:text-violet-100">
+          <CheckCircle2
+            size={19}
+            className="text-violet-700 dark:text-violet-300"
+            aria-hidden="true"
+          />
+          <h3 className="text-lg font-bold text-violet-950 dark:text-violet-100">
             実行の目安
           </h3>
         </div>
         <div className="mt-3 space-y-2">
-          {dementiaAppetiteQaPriorities.map((priority) => (
+          {appetiteLossQaPriorities.map((priority) => (
             <details
               key={priority.period}
               className="rounded-xl border border-violet-100 bg-white p-3 dark:border-violet-900/50 dark:bg-gray-900"
@@ -296,7 +261,11 @@ export function DementiaAppetiteLossQaPage() {
               <summary className="cursor-pointer list-none text-base font-bold text-gray-900 focus:outline-none focus:ring-2 focus:ring-violet-500 dark:text-gray-100">
                 <span className="flex items-center justify-between gap-3">
                   {priority.period}
-                  <ChevronDown size={18} aria-hidden="true" className="shrink-0 text-violet-700 dark:text-violet-300" />
+                  <ChevronDown
+                    size={18}
+                    aria-hidden="true"
+                    className="shrink-0 text-violet-700 dark:text-violet-300"
+                  />
                 </span>
               </summary>
               <ul className="mt-3 space-y-2 border-t border-violet-100 pt-3 text-base leading-7 text-gray-700 dark:border-violet-900/50 dark:text-gray-200">
@@ -316,19 +285,19 @@ export function DementiaAppetiteLossQaPage() {
         </div>
       </section>
 
-      <section
-        aria-labelledby="safety-title"
-        className="rounded-2xl border border-rose-200 bg-rose-50 p-4 dark:border-rose-900/50 dark:bg-rose-950/30"
-      >
+      <section className="rounded-2xl border border-rose-200 bg-rose-50 p-4 dark:border-rose-900/50 dark:bg-rose-950/30">
         <div className="flex items-start gap-3">
-          <AlertCircle size={20} aria-hidden="true" className="mt-0.5 shrink-0 text-rose-700 dark:text-rose-300" />
+          <AlertCircle
+            size={20}
+            aria-hidden="true"
+            className="mt-0.5 shrink-0 text-rose-700 dark:text-rose-300"
+          />
           <div>
-            <h3 id="safety-title" className="text-base font-bold text-rose-950 dark:text-rose-100">
-              急な変化は医療者へ相談
+            <h3 className="text-base font-bold text-rose-950 dark:text-rose-100">
+              このページだけで判断しないでください
             </h3>
             <p className="mt-1 text-base leading-7 text-rose-950/90 dark:text-rose-100/90">
-              急に食べられなくなった、発熱・呼吸苦・繰り返すむせ・強い眠気・脱水がある場合は、
-              感染や嚥下障害などを確認するため、主治医・歯科医師・言語聴覚士・管理栄養士などへ相談します。
+              食べられない原因や安全な食形態は人によって異なります。急な変化、むせ、呼吸苦、痛み、脱水の心配がある時は、食事を続ける前に医療者へ相談してください。
             </p>
           </div>
         </div>
@@ -337,7 +306,7 @@ export function DementiaAppetiteLossQaPage() {
       <section className="rounded-2xl bg-white/70 p-4 text-sm leading-6 text-gray-600 dark:bg-gray-900/60 dark:text-gray-300">
         <h3 className="font-bold text-gray-900 dark:text-gray-100">主な根拠・参考資料</h3>
         <ul className="mt-2 space-y-2">
-          {dementiaAppetiteQaMaterials.map((material) => (
+          {appetiteLossQaMaterials.map((material) => (
             <li key={material.label}>
               <a
                 href={material.href}
@@ -352,7 +321,7 @@ export function DementiaAppetiteLossQaPage() {
           ))}
         </ul>
         <p className="mt-3 text-xs leading-5 text-gray-500 dark:text-gray-400">
-          本ページは学習・ケア検討の補助を目的としています。個別の治療や食形態、人工栄養の判断は、本人・家族と医療ケアチームで行ってください。
+          本ページは学習・ケア検討の補助を目的としています。個別の治療や食形態、栄養、人工栄養の判断は、本人・家族と医療・ケアチームで行ってください。
         </p>
       </section>
     </div>

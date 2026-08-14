@@ -1,4 +1,4 @@
-import { useNavigate, useLocation } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { ArrowLeft, Moon, Sun } from 'lucide-react'
 import { useAppStore } from '../../stores/app-store'
 import { XpDisplay } from '../ui/XpDisplay'
@@ -20,8 +20,14 @@ export function Header() {
             <ArrowLeft size={20} />
           </button>
         )}
-        <h1 className="text-lg font-bold text-teal-700 dark:text-teal-400">
-          OralCare Navi
+        <h1 className="text-lg font-bold">
+          <Link
+            to="/"
+            className="rounded-md text-teal-700 transition-colors hover:text-teal-900 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 dark:text-teal-400 dark:hover:text-teal-200 dark:focus:ring-offset-gray-900"
+            aria-label="OralCare Navi home"
+          >
+            OralCare Navi
+          </Link>
         </h1>
       </div>
       <div className="flex items-center gap-3">

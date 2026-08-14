@@ -374,11 +374,11 @@ const APPROACHES: ApproachSection[] = [
   },
   {
     id: 'dementia-care',
-    title: 'E. 認知症患者への対応 — Comfort feeding という最終解',
+    title: 'E. 認知症患者への対応 — Comfort feeding を考える',
     icon: Brain,
     gradient: 'from-amber-400 to-orange-600',
     intro:
-      '認知症終末期では「自分で食べる喜び」を支える段階から、「口から食べる喜び(comfort feeding)」を支える段階へとリハビリテーションの目標が移行する。「最期まで食べる喜び」を最優先する考え方。',
+      '進行した認知症では、栄養量を満たすことだけでなく、本人の苦痛の少なさ・好み・大切にしてきたことを踏まえて食支援の目標を考える。Comfort feeding は、そのための個別の選択肢の一つ。',
     steps: [
       {
         title: '食物認識を助ける視覚・嗅覚刺激',
@@ -405,12 +405,12 @@ const APPROACHES: ApproachSection[] = [
         cite: '山田『認知症高齢者の摂食嚥下障害への次の一手!』pp.69-70',
       },
       {
-        title: 'Comfort feeding(快適な食事)へ移行する判断',
+        title: 'Comfort feeding（快適さを中心にする食支援）を話し合う',
         detail:
-          '認知症終末期(嚥下機能の本質的回復が見込めず、本人・家族の合意がある段階)では、栄養目標を達成するための「目標栄養量に届く食事」から、本人が安楽に楽しめる「comfort feeding」へ転換する。誤嚥リスクは残るが、誤嚥防止のための強制中止はしない。',
+          '進行した認知症で食べることの負担が大きくなった時は、本人が受け入れられる範囲で、好きなものを、苦痛なく楽しめることを目標にする支援がある。むせ・疲労・強い拒否があれば中止し、医療・ケアチームと再評価する。',
         reason:
-          '2015年のESPENガイドラインでは、認知症終末期に経腸栄養を開始することは推奨しないとされている。経口摂取の継続自体に栄養摂取以上の価値(尊厳・QOL・最期の楽しみ)がある。',
-        cite: '渡辺ほか『食欲不振のアセスメント』p.25 / 山田『認知症高齢者の摂食嚥下障害への次の一手!』pp.71-72',
+          'Comfort feeding は「何もしない」「食べさせない」という意味ではない。口腔ケアや症状緩和を続けながら、本人の希望、予後、利益と負担を家族・多職種で話し合うための枠組みになる。',
+        cite: 'ESPEN guideline on nutrition and hydration in dementia – Update 2024 / American Geriatrics Society position statement',
       },
     ],
   },
@@ -461,7 +461,13 @@ export function AppetiteLossPage() {
           <span className="text-[10px] opacity-70">[渡辺ほか『食欲不振のアセスメント』p.22]</span>
         </p>
       </div>
-
+      <Link
+        to="/diseases/appetite-loss/qa"
+        className="block rounded-xl border border-teal-200 bg-teal-50 p-4 transition-colors hover:bg-teal-100 focus:outline-none focus:ring-2 focus:ring-teal-500 dark:border-teal-900/50 dark:bg-teal-950/30 dark:hover:bg-teal-950/50"
+      >
+        <span className="block text-sm font-bold text-teal-950 dark:text-teal-100">総合的具体的方法Q&A</span>
+        <span className="mt-1 block text-xs leading-relaxed text-teal-900 dark:text-teal-100/90">急変の確認から、原因の探し方、嚥下・水分・栄養・意思決定までをQ&Aで確認する</span>
+      </Link>
       {/* 1. 食欲不振・拒否の原因 */}
       <div>
         <h3 className="mb-3 flex items-center gap-2 text-base font-bold text-gray-900 dark:text-gray-100">
@@ -589,6 +595,14 @@ export function AppetiteLossPage() {
                         </p>
                       </div>
                     ))}
+                    {a.id === 'dementia-care' && (
+                      <Link
+                        to="/diseases/dementia/appetite-loss-qa"
+                        className="flex min-h-11 items-center justify-center rounded-xl bg-amber-600 px-4 py-3 text-sm font-bold text-white transition-colors hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
+                      >
+                        認知症に特有な食欲不振・拒否の対応Q&Aへ
+                      </Link>
+                    )}
                   </div>
                 )}
               </div>
