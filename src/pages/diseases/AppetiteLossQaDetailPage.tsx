@@ -1,3 +1,4 @@
+import { useLayoutEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import {
   AlertTriangle,
@@ -15,6 +16,10 @@ import {
 
 export function AppetiteLossQaDetailPage() {
   const { questionId } = useParams()
+
+  useLayoutEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+  }, [questionId])
   const question = getAppetiteLossGuideQuestion(questionId)
 
   if (!question) {
